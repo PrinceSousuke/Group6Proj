@@ -1,4 +1,4 @@
 # Group6Proj
 
 
-Placeholder text
+Group members: Amber Oliver, Ben Ludolf, Damia Sargent, Ryan Meeks
