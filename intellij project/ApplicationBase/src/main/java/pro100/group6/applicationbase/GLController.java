@@ -12,8 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class GLController {
@@ -35,6 +33,16 @@ public class GLController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    private void selectAdventure(){
+
+    }
+
+    @FXML
+    private void selectVs(){
+
     }
 
 
