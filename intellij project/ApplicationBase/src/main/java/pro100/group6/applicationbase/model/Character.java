@@ -14,8 +14,6 @@ public abstract class Character {
     }
 
     // Geters and Setters
-
-
     public Card[] getHand() {
         return hand;
     }

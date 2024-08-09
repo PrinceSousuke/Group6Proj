@@ -8,16 +8,40 @@ public abstract class Card {
     protected int feyreReq;
     protected int health;
     protected int damage;
+    protected String cardName;
+    protected String cardDescription;
 
-    public Card(Image cardImage, CardClass cardClass, int feyreReq, int health, int damage) {
+    public Card(Image cardImage, CardClass cardClass, int feyreReq, int health, int damage, String cardName, String cardDescription) {
         setCardImage(cardImage);
         setCardClass(cardClass);
         setFeyreReq(feyreReq);
         setHealth(health);
         setDamage(damage);
+        setCardName(cardName);
+        setCardDescription(cardDescription);
     }
 
     // Getters and Setters
+    public String getCardName() {
+        return cardName;
+    }
+
+    protected void setCardName(String cardName) {
+        if (cardName != null) {
+            this.cardName = cardName;
+        }
+    }
+
+    public String getCardDescription() {
+        return cardDescription;
+    }
+
+    protected void setCardDescription(String cardDescription) {
+        if (cardDescription != null) {
+            this.cardDescription = cardDescription;
+        }
+    }
+
     public Image getCardImage() {
         return cardImage;
     }
