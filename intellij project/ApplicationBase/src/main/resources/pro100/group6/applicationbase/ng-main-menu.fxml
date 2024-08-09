@@ -40,7 +40,7 @@
                   <Image url="@uiResources/settingsbuttonbg.jpg" />
                </image>
             </ImageView>
-            <StackPane fx:id="settingsPane" prefHeight="150.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <StackPane fx:id="settingsPane" prefHeight="150.0" prefWidth="200.0" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
