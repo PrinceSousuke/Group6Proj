@@ -6,17 +6,13 @@ public abstract class Card {
     protected Image cardImage;
     protected CardClass cardClass;
     protected int feyreReq;
-    protected int health;
-    protected int damage;
     protected String cardName;
     protected String cardDescription;
 
-    public Card(Image cardImage, CardClass cardClass, int feyreReq, int health, int damage, String cardName, String cardDescription) {
+    public Card(Image cardImage, CardClass cardClass, int feyreReq, String cardName, String cardDescription) {
         setCardImage(cardImage);
         setCardClass(cardClass);
         setFeyreReq(feyreReq);
-        setHealth(health);
-        setDamage(damage);
         setCardName(cardName);
         setCardDescription(cardDescription);
     }
@@ -69,30 +65,6 @@ public abstract class Card {
     protected void setFeyreReq(int feyreReq) {
         if (feyreReq >= 0) {
             this.feyreReq = feyreReq;
-        }
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        if (health >= 0) {
-            this.health = health;
-        } else {
-            this.health = 0;
-        }
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    protected void setDamage(int damage) {
-        if (health >= 0) {
-            this.damage = damage;
-        } else {
-            this.damage = 0;
         }
     }
 }
