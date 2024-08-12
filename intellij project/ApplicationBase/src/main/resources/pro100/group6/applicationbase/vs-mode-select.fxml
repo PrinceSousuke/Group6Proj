@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="202.0" text="CPU difficulty:" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets right="200.0" top="126.0" />
+         </StackPane.margin>
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Line endX="877.9595336914062" endY="-0.6922556757926941" startX="-100.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="202.0" text="Opponent:" textAlignment="CENTER" StackPane.alignment="BOTTOM_CENTER">
+         <font>
+            <Font size="32.0" />
+         </font>
+         <StackPane.margin>
+            <Insets bottom="126.0" right="200.0" />
+         </StackPane.margin>
+      </Label>
+      <SplitMenuButton mnemonicParsing="false" prefHeight="41.0" prefWidth="159.0" text="Skill Level" StackPane.alignment="TOP_CENTER">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Novice" />
+          <MenuItem mnemonicParsing="false" text="Moderate" />
+            <MenuItem mnemonicParsing="false" text="Seasoned" />
+        </items>
+         <StackPane.margin>
+            <Insets left="180.0" top="130.0" />
+         </StackPane.margin>
+      </SplitMenuButton>
+      <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="118.0" text="Login" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="125.0" left="100.0" />
+         </StackPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="85.0" prefWidth="197.0" text="Start" StackPane.alignment="CENTER_RIGHT">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Button>
+   </children>
+</StackPane>
