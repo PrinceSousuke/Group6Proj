@@ -9,12 +9,7 @@ public abstract class Card {
     protected String cardName;
     protected String cardDescription;
 
-    public Card(Image cardImage, CardClass cardClass, int feyreReq, String cardName, String cardDescription) {
-        setCardImage(cardImage);
-        setCardClass(cardClass);
-        setFeyreReq(feyreReq);
-        setCardName(cardName);
-        setCardDescription(cardDescription);
+    public Card() {
     }
 
     // Getters and Setters
