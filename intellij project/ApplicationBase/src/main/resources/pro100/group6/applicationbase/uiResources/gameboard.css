@@ -1,0 +1,20 @@
+
+.player1 {
+    -fx-alignment: bottom-center;
+}
+
+.player2 {
+    -fx-alignment: top-center;
+}
+
+#player1_playspace {
+    -fx-alignment: center;
+}
+
+#player2-playspace{
+    -fx-rotate: 180;
+}
+
+#player1row2{
+    -fx-end-margin: 200;
+}
