@@ -1,17 +1,13 @@
-
-.player1 {
-    -fx-alignment: bottom-center;
-}
-
-.player2 {
-    -fx-alignment: top-center;
-}
-
-#player1_playspace {
+.board {
     -fx-alignment: center;
 }
 
+#player1-playspace {
+    -fx-translate-y: 35;
+}
+
 #player2-playspace{
+    -fx-translate-y: -35;
     -fx-rotate: 180;
 }
 
