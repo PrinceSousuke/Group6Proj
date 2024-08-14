@@ -1,26 +1,37 @@
 package pro100.group6.applicationbase.model.abstractmodel;
 
+import pro100.group6.applicationbase.model.CardClass;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public abstract class Character {
     protected String name;
     protected int feyre;
     protected int health;
-    protected Card[] hand;
+    protected List<Card> hand;
     protected Card[] deck;
+    protected CardClass cardClass;
 
-    public Character(String name, int feyre, int health) {
+    public Character(String name) {
         setName(name);
-        setFeyre(feyre);
-        setHealth(health);
+    }
+
+    public void drawCard() {
+        Random random = new Random();
+        int rng = random.nextInt(deck.length);
+        hand.add(deck[rng]);
     }
 
     // Geters and Setters
-    public Card[] getHand() {
+    public List<Card> getHand() {
         return hand;
     }
 
-    public void setHand(Card[] hand) {
+    public void setHand(List hand) {
         if (hand == null) {
-            this.hand = new Card[0];
+            this.hand = new ArrayList();
         } else {
             this.hand = hand;
         }

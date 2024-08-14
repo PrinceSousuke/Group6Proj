@@ -11,8 +11,8 @@ public class Elves extends Troop {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(1);
-        setDamage(2);
-        setHealth(1);
+        setDamage(3);
+        setHealth(12);
         setCardName("Elves");
         setCardDescription("Placeholder description");
     }

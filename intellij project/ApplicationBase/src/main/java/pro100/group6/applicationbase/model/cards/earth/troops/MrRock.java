@@ -10,10 +10,10 @@ public class MrRock extends Troop {
     public MrRock() {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
-        setFeyreReq(10);
-        setDamage(10);
-        setHealth(10);
+        setFeyreReq(1);
+        setDamage(5);
+        setHealth(5);
         setCardName("Mr.Rock");
-        setCardDescription("Rock, Rock");
+        setCardDescription("Placeholder description");
     }
 }

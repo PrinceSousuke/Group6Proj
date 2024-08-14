@@ -11,8 +11,8 @@ public class Fauns extends Troop {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(3);
-        setDamage(3);
-        setHealth(4);
+        setDamage(6);
+        setHealth(14);
         setCardName("Fauns");
         setCardDescription("Placeholder description");
     }

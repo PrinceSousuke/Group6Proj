@@ -11,8 +11,8 @@ public class Banshee extends Troop {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(5);
-        setDamage(6);
-        setHealth(6);
+        setDamage(7);
+        setHealth(8);
         setCardName("Banshee");
         setCardDescription("Placeholder description");
     }

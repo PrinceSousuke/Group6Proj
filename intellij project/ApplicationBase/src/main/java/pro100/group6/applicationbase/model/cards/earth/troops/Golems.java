@@ -11,8 +11,8 @@ public class Golems extends Troop {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(1);
-        setDamage(1);
-        setHealth(2);
+        setDamage(7);
+        setHealth(18);
         setCardName("Golems");
         setCardDescription("Placeholder description");
     }

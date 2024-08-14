@@ -1,23 +1,22 @@
-package pro100.group6.applicationbase.model.cards.earth.spells;
+package pro100.group6.applicationbase.model.cards.earth.utility;
 
 import javafx.scene.image.Image;
 import pro100.group6.applicationbase.model.CardClass;
 import pro100.group6.applicationbase.model.abstractmodel.AbilitySpell;
-import pro100.group6.applicationbase.model.abstractmodel.Card;
 
 import java.io.File;
 
-public class SylvanShield extends AbilitySpell {
-    public SylvanShield() {
+public class WhisperingLeaf extends AbilitySpell {
+    public WhisperingLeaf() {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
-        setFeyreReq(2);
-        setCardName("SylvanShield");
-        setCardDescription("Shield a ally");
+        setFeyreReq(0);
+        setCardName("Whispering Leaf");
+        setCardDescription("Reveal 1 Enemy Trap");
     }
 
     @Override
     public void ability() {
-
+        //TODO
     }
 }

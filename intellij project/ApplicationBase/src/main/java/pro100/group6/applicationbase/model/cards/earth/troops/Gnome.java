@@ -11,9 +11,9 @@ public class Gnome extends Troop {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(2);
-        setDamage(2);
-        setHealth(1);
+        setDamage(6);
+        setHealth(10);
         setCardName("Gnome");
-        setCardDescription("Spawns a 1|2 Golem on death");
+        setCardDescription("Placeholder description");
     }
 }

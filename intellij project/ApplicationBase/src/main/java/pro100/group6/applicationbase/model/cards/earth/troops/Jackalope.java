@@ -11,8 +11,8 @@ public class Jackalope extends Troop {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(5);
-        setDamage(3);
-        setHealth(5);
+        setDamage(4);
+        setHealth(12);
         setCardName("Jackalope");
         setCardDescription("Placeholder description");
     }

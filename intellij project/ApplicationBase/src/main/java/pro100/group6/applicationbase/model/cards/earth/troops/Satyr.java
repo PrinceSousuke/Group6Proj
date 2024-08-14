@@ -12,7 +12,7 @@ public class Satyr extends Troop {
         setCardClass(CardClass.Earth);
         setFeyreReq(4);
         setDamage(5);
-        setHealth(2);
+        setHealth(15);
         setCardName("Satyr");
         setCardDescription("Placeholder description");
     }

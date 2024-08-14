@@ -11,9 +11,9 @@ public class Nymph extends Troop {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(3);
-        setDamage(2);
-        setHealth(3);
+        setDamage(4);
+        setHealth(16);
         setCardName("Nymph");
-        setCardDescription("Everytime Nymph attacks heal 1 random ally");
+        setCardDescription("Placeholder description");
     }
 }
