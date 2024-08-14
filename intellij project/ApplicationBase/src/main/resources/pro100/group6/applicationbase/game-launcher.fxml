@@ -17,12 +17,12 @@
             <Insets left="50.0" />
          </StackPane.margin>
          <children>
-            <ImageView fx:id="selectAdventure" fitHeight="423.0" fitWidth="297.0" layoutX="201.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="selectAdventure" fitHeight="423.0" fitWidth="297.0" layoutX="201.0" layoutY="89.0" onMouseClicked="#selectAdventure" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@uiResources/adventurePlaceholder.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="selectVs" fitHeight="423.0" fitWidth="297.0" layoutX="498.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="selectVs" fitHeight="423.0" fitWidth="297.0" layoutX="498.0" layoutY="89.0" onMouseClicked="#selectVs" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@uiResources/vsPlaceholder.png" />
                </image>

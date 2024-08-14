@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+
+import java.io.File;
 import java.io.IOException;
 
 public class GLController {
@@ -24,7 +26,6 @@ public class GLController {
 
     @FXML
     private void openSettings(){
-        System.out.println(rootPane.getChildren().size());
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("settings-menu.fxml"));
             settingsPane.getChildren().add(pane);
@@ -42,6 +43,13 @@ public class GLController {
 
     @FXML
     private void selectVs(){
+        try {
+            StackPane newPane = FXMLLoader.load(getClass().getResource("game-board.fxml"));
+            rootPane = (StackPane) selectVs.getParent().getParent();
+            rootPane.getChildren().add(newPane);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
