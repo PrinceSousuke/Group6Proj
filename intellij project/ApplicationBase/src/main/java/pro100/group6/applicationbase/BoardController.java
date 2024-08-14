@@ -86,4 +86,6 @@ public class BoardController implements Initializable {
             play_board.setRotate(180);
         }
     }
+
+
 }
