@@ -2,7 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,6 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.shape.Line?>
+
 
 <StackPane id="root" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@uiResources/gameboard.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pro100.group6.applicationbase.BoardController">
    <children>
@@ -24,6 +27,11 @@
          </viewport>
       </ImageView>
       <Line endX="100.0" startX="-334.98870849609375" startY="-0.6575281023979187" />
+      <ProgressBar id="feyreMeter" fx:id="feyreMeter" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="330.0" progress="0.0" rotate="-90.0" snapToPixel="false" stylesheets="@uiResources/gameboard.css" StackPane.alignment="CENTER_LEFT">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </ProgressBar>
       <TilePane fx:id="play_board" alignment="CENTER" orientation="VERTICAL" rotate="180.0" styleClass="board" stylesheets="@uiResources/gameboard.css" StackPane.alignment="CENTER">
          <children>
             <Pane id="player2-playspace" prefHeight="268.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css">
@@ -218,7 +226,7 @@
             </Pane>
          </children>
       </TilePane>
-      <ImageView fx:id="activePlayerImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+      <ImageView id="activePlayerImg" fx:id="activePlayerImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
          <StackPane.margin>
             <Insets bottom="10.0" left="10.0" />
          </StackPane.margin>
@@ -226,7 +234,7 @@
             <Image url="@uiResources/playerPlaceholderB.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="opponentImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+      <ImageView id="opponentImg" fx:id="opponentImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" top="10.0" />
          </StackPane.margin>
@@ -234,6 +242,6 @@
             <Image url="@uiResources/playerPlaceholderA.png" />
          </image>
       </ImageView>
-      <Button fx:id="passButton" mnemonicParsing="false" onAction="#passTurn" text="Button" />
+      <Button id="passButton" fx:id="passButton" mnemonicParsing="false" onAction="#passTurn" stylesheets="@uiResources/gameboard.css" text="Button" />
    </children>
 </StackPane>

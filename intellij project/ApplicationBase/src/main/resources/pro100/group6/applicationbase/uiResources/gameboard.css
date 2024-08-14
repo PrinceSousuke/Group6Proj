@@ -14,3 +14,15 @@
 #player1row2{
     -fx-end-margin: 200;
 }
+
+#feyreMeter {
+    -fx-alignment: center-left;
+}
+
+#opponentImg {
+    -fx-alignment: top-right;
+}
+
+#passButton {
+    -fx-alignment: center;
+}
