@@ -7,6 +7,7 @@
 package pro100.group6.applicationbase;
 
 import pro100.group6.applicationbase.model.*;
+import pro100.group6.applicationbase.model.abstractmodel.Card;
 
 import java.util.ArrayList;
 import java.util.Arrays;

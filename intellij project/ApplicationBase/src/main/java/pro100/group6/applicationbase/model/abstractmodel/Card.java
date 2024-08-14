@@ -1,6 +1,7 @@
-package pro100.group6.applicationbase.model;
+package pro100.group6.applicationbase.model.abstractmodel;
 
 import javafx.scene.image.Image;
+import pro100.group6.applicationbase.model.CardClass;
 
 public abstract class Card {
     protected Image cardImage;

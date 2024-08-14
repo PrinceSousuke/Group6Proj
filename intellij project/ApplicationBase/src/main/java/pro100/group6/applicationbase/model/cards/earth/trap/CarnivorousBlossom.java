@@ -1,4 +1,4 @@
-package pro100.group6.applicationbase.model.cards.earth.spells;
+package pro100.group6.applicationbase.model.cards.earth.trap;
 
 import javafx.scene.image.Image;
 import pro100.group6.applicationbase.model.CardClass;
@@ -6,13 +6,13 @@ import pro100.group6.applicationbase.model.abstractmodel.Card;
 
 import java.io.File;
 
-public class SylvanShield extends Card implements Ability {
-    public SylvanShield() {
+public class CarnivorousBlossom extends Card implements Ability {
+    public CarnivorousBlossom() {
         setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
         setCardClass(CardClass.Earth);
         setFeyreReq(2);
-        setCardName("SylvanShield");
-        setCardDescription("Shield a ally");
+        setCardName("Carnivorous Blossom");
+        setCardDescription("Place trap under ally creature. Trigger: Trap enemy for 2 turns, deal 2 damage every turn");
     }
 
     @Override

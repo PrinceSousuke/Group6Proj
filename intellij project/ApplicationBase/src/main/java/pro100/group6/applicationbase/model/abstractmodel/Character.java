@@ -1,4 +1,4 @@
-package pro100.group6.applicationbase.model;
+package pro100.group6.applicationbase.model.abstractmodel;
 
 public abstract class Character {
     protected String name;

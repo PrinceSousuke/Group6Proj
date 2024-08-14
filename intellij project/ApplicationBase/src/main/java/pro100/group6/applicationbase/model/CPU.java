@@ -1,5 +1,7 @@
 package pro100.group6.applicationbase.model;
 
+import pro100.group6.applicationbase.model.abstractmodel.Character;
+
 public class CPU extends Character {
     protected int skillLevel;
 
