@@ -41,7 +41,7 @@ there are consequences to pay! Your max health will decrease by the amount of Fe
 function Rules(){
     return (
         <div className="App">
-            <Header />
+            <Header title="Rules"/>
             <Nav />
             <GamePlay />
         </div>

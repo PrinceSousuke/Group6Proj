@@ -5,7 +5,7 @@ import Nav from '../components/Nav'
 function AboutUs(){
     return (
         <div className="App">
-            <Header />
+            <Header title="About the Developers!"/>
             <Nav />
             <p>We're pretty cool developers!</p>
         </div>

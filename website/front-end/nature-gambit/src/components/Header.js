@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Header(){
+function Header({ title }){
     return (
         <header className="App-header">
-            <p>Nature's Gambit</p>
+            <p>{title}</p>
         </header>
     )
 }

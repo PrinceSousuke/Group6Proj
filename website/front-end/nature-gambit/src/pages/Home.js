@@ -6,7 +6,7 @@ import Window from '../components/Window'
 function Home(){
     return (
         <div className="App">
-            <Header />
+            <Header title={"Nature's Gambit"} />
             <Nav />
             <Window />
         </div>
