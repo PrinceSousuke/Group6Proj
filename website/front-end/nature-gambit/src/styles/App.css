@@ -3,15 +3,56 @@
 }
 
 .App-header {
-  background-color: #727E66;
-  min-height: 100vh;
+  min-height: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #d8cbc4;
 }
 
-.App-link {
-  color: #61dafb;
+.App-navBar {
+  align-items: center;
+}
+
+.App-navLink {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #3d251e;
+}
+
+.App-navLink:hover {
+  color: #ffc2d1;
+}
+
+.Window-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 90px;
+}
+
+.App-window {
+  width: 60%;
+  position: relative;
+  background-color: #bca89f;
+}
+
+.App-window::before {
+  content: '';
+  display: block;
+  padding-bottom: 60%;
+}
+
+.Rules-container {
+  text-align: left;
+  padding-left: 10%;
+  padding-right: 10%;
+  word-wrap: break-word;
+}
+
+.App-rulesHeaders {
+  font-weight: bold;
+  font-size: 30px;
+  padding-bottom: 0;
 }
