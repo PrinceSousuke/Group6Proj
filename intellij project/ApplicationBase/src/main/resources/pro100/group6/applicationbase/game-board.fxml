@@ -17,7 +17,7 @@
 
 <StackPane id="root" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@uiResources/gameboard.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pro100.group6.applicationbase.BoardController">
    <children>
-      <ImageView id="boardbg" fitHeight="601.0" fitWidth="998.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+      <ImageView id="boardbg" fitHeight="601.0" fitWidth="998.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="CENTER">
          <image>
             <Image url="@uiResources/gameBoard.png" />
          </image>

@@ -78,16 +78,31 @@ public class BoardController implements Initializable {
     }
 
     private void boardSetup(){
-        player1.setFeyre(1);
         List<Card> p1cards = new ArrayList<>(Arrays.asList(new Mossglow(), new Satyr(), new SylvanShield(), new Fairy(), new RootedStaff(), new Banshee()));
         List<Card> p2cards = new ArrayList<>(Arrays.asList(new MrRock(), new MoonlitMirage(), new Gnome(), new RootedStaff(), new Nymph(), new Jackalope()));
         player1.setDeck(p1cards.toArray(new Card[p1cards.size()]));
         player2.setDeck(p2cards.toArray(new Card[p2cards.size()]));
         player1.setDeck(shufflePlayerDeck(player1));
         player2.setDeck(shufflePlayerDeck(player2));
-        feyreMeter.setProgress((double) player1.getFeyre() /20);
-        healthMeter.setProgress((double) player1.getHealth() /25);
-        ((ImageView)activePlayerRow1.getChildren().getLast()).setImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        switch (new Random().nextInt(2)){
+            case 0:
+                StackPane.setAlignment(activePlayerImg, Pos.BOTTOM_LEFT);
+                StackPane.setAlignment(opponentImg, Pos.TOP_RIGHT);
+                player1.setFeyre(1);
+                feyreMeter.setProgress((double) player1.getFeyre() /15);
+                healthMeter.setProgress((double) player1.getHealth() /25);
+                break;
+            case 1:
+                StackPane.setAlignment(activePlayerImg, Pos.TOP_RIGHT);
+                StackPane.setAlignment(opponentImg, Pos.BOTTOM_LEFT);
+                player2.setFeyre(1);
+                play_board.setRotate(180);
+                feyreMeter.setProgress((double) player2.getFeyre() /15);
+                healthMeter.setProgress((double) player2.getHealth() /25);
+                break;
+            default:
+                boardSetup();
+        }
     }
 
 
@@ -129,7 +144,7 @@ public class BoardController implements Initializable {
             if (StackPane.getAlignment(p) == Pos.TOP_RIGHT){
                 Player player = playerHashMap.get(p);
                 player.setFeyre(player.getFeyre() + 1);
-                feyreMeter.setProgress((double) player.getFeyre() /20);
+                feyreMeter.setProgress((double) player.getFeyre() /15);
                 healthMeter.setProgress((double) player.getHealth() /25);
             }
             swaparoo(p);
