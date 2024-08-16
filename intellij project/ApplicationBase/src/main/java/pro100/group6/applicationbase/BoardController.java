@@ -9,13 +9,20 @@ package pro100.group6.applicationbase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import pro100.group6.applicationbase.model.*;
 import pro100.group6.applicationbase.model.abstractmodel.Card;
+import pro100.group6.applicationbase.model.cards.earth.spells.MoonlitMirage;
+import pro100.group6.applicationbase.model.cards.earth.spells.Mossglow;
+import pro100.group6.applicationbase.model.cards.earth.spells.SylvanShield;
+import pro100.group6.applicationbase.model.cards.earth.troops.*;
+import pro100.group6.applicationbase.model.cards.earth.utility.RootedStaff;
 
 import java.io.*;
 import java.net.URL;
@@ -28,7 +35,7 @@ public class BoardController implements Initializable {
     @FXML
     private StackPane rootPane;
     @FXML
-    private ProgressBar feyreMeter;
+    private ProgressBar feyreMeter, healthMeter;
 
     @FXML
     private ImageView activePlayerImg, opponentImg;
@@ -37,14 +44,18 @@ public class BoardController implements Initializable {
     private GridPane activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2;
 
     @FXML
+    private Button passButton;
+
+    @FXML
     private TilePane play_board;
 
-    private HashMap<ImageView, Player> playerHashMap = new HashMap<>();
+    private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        StackPane.setAlignment(passButton, Pos.CENTER_RIGHT);
         String player, opponent;
         try (BufferedReader br = new BufferedReader(new FileReader("gamePlayers.txt"))){
             String[] data = br.readLine().split(",");
@@ -63,21 +74,24 @@ public class BoardController implements Initializable {
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        boardSetup();
+    }
+
+    private void boardSetup(){
         player1.setFeyre(1);
-        feyreMeter.setProgress((double) player1.getFeyre() /10);
-        feyreMeter.setTranslateX(-100);
-        feyreMeter.setTranslateY(-80);
+        List<Card> p1cards = new ArrayList<>(Arrays.asList(new Mossglow(), new Satyr(), new SylvanShield(), new Fairy(), new RootedStaff(), new Banshee()));
+        List<Card> p2cards = new ArrayList<>(Arrays.asList(new MrRock(), new MoonlitMirage(), new Gnome(), new RootedStaff(), new Nymph(), new Jackalope()));
+        player1.setDeck(p1cards.toArray(new Card[p1cards.size()]));
+        player2.setDeck(p2cards.toArray(new Card[p2cards.size()]));
+        player1.setDeck(shufflePlayerDeck(player1));
+        player2.setDeck(shufflePlayerDeck(player2));
+        feyreMeter.setProgress((double) player1.getFeyre() /20);
+        healthMeter.setProgress((double) player1.getHealth() /25);
+        ((ImageView)activePlayerRow1.getChildren().getLast()).setImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
     }
 
 
-//    public BoardController(Player player1, Player player2) {
-//        setPlayer1(player1);
-//        setPlayer2(player2);
-//        player1.setDeck((Card[]) shufflePlayerDeck(player1).toArray());
-//        player2.setDeck((Card[]) shufflePlayerDeck(player2).toArray());
-//    }
-
-    private ArrayList<Card> shufflePlayerDeck(Player player){
+    private Card[] shufflePlayerDeck(Player player){
         ArrayList<Card> deck = new ArrayList<>(Arrays.asList(player.getDeck()));
         for (int i = 0; i < deck.size(); i++){
             int randomIndex = (int) (Math.random() * deck.size());
@@ -86,7 +100,7 @@ public class BoardController implements Initializable {
             deck.set(randomIndex, Swapped);
             deck.set(i, temp);
         }
-        return deck;
+        return deck.toArray(new Card[deck.size()]);
     }
 
 
@@ -115,7 +129,8 @@ public class BoardController implements Initializable {
             if (StackPane.getAlignment(p) == Pos.TOP_RIGHT){
                 Player player = playerHashMap.get(p);
                 player.setFeyre(player.getFeyre() + 1);
-                feyreMeter.setProgress((double) player.getFeyre() /10);
+                feyreMeter.setProgress((double) player.getFeyre() /20);
+                healthMeter.setProgress((double) player.getHealth() /25);
             }
             swaparoo(p);
         }
