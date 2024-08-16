@@ -1,12 +1,11 @@
 package pro100.group6.applicationbase.model;
 
-import pro100.group6.applicationbase.model.abstractmodel.Character;
 
-public class CPU extends Character {
+public class CPU extends Player {
     protected int skillLevel;
 
-    public CPU(String name, int feyre, int health) {
-        super(name, feyre, health);
+    public CPU(String name, int health) {
+        super(name, health);
     }
 
     public int getSkillLevel() {

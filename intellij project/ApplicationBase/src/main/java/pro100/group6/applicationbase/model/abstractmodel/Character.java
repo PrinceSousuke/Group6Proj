@@ -1,15 +1,22 @@
 package pro100.group6.applicationbase.model.abstractmodel;
 
-public abstract class Character {
+import java.io.Serial;
+import java.io.Serializable;
+
+public abstract class Character implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1356L;
     protected String name;
     protected int feyre;
     protected int health;
     protected Card[] hand;
     protected Card[] deck;
 
-    public Character(String name, int feyre, int health) {
+
+
+    public Character(String name,int health) {
         setName(name);
-        setFeyre(feyre);
+        setFeyre(0);
         setHealth(health);
     }
 

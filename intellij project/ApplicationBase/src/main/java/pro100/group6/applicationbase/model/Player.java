@@ -5,8 +5,8 @@ import pro100.group6.applicationbase.model.abstractmodel.Character;
 public class Player extends Character {
     protected int playerlevel;
 
-    public Player(String name, int feyre, int health) {
-        super(name, feyre, health);
+    public Player(String name, int health) {
+        super(name,health);
         setPlayerlevel(1);
     }
 
@@ -15,7 +15,7 @@ public class Player extends Character {
     }
 
     public void setPlayerlevel(int playerlevel) {
-        if (playerlevel < 0) {
+        if (playerlevel > 0) {
             this.playerlevel = playerlevel;
         } else {
             setPlayerlevel(1);

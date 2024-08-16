@@ -9,9 +9,7 @@ package pro100.group6.applicationbase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -19,10 +17,7 @@ import javafx.scene.layout.TilePane;
 import pro100.group6.applicationbase.model.*;
 import pro100.group6.applicationbase.model.abstractmodel.Card;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 
@@ -50,11 +45,26 @@ public class BoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String player, opponent;
         try (BufferedReader br = new BufferedReader(new FileReader("gamePlayers.txt"))){
-
+            String[] data = br.readLine().split(",");
+            player = data[0];
+            opponent = data[1];
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(player))){
+            setPlayer1((Player) in.readObject());
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(opponent))){
+            setPlayer2((Player) in.readObject());
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        player1.setFeyre(1);
+        feyreMeter.setProgress((double) player1.getFeyre() /10);
         feyreMeter.setTranslateX(-100);
         feyreMeter.setTranslateY(-80);
     }
@@ -102,12 +112,12 @@ public class BoardController implements Initializable {
         }
         List<ImageView> players = Arrays.asList(activePlayerImg, opponentImg);
         for (ImageView p : players) {
-            swaparoo(p);
-            if (StackPane.getAlignment(p) == Pos.BOTTOM_LEFT){
+            if (StackPane.getAlignment(p) == Pos.TOP_RIGHT){
                 Player player = playerHashMap.get(p);
-                feyreMeter.setProgress(player.getFeyre());
-                feyreMeter.setProgress(feyreMeter.getProgress() + 1);
+                player.setFeyre(player.getFeyre() + 1);
+                feyreMeter.setProgress((double) player.getFeyre() /10);
             }
+            swaparoo(p);
         }
 
     }
