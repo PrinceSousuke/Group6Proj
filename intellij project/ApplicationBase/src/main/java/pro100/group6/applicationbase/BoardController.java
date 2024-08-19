@@ -21,7 +21,6 @@ import pro100.group6.applicationbase.model.abstractmodel.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class BoardController implements Initializable {
@@ -32,6 +31,8 @@ public class BoardController implements Initializable {
     private StackPane rootPane;
     @FXML
     private ProgressBar feyreMeter, healthMeter;
+    @FXML
+    private Pane APPane, OpPane;
 
     @FXML
     private ImageView activePlayerImg, opponentImg;
@@ -52,7 +53,11 @@ public class BoardController implements Initializable {
         public void run() {
             while (true) {
                 if (rootPane != null) {
-
+                    rootPane.setPrefWidth(rootPane.getScene().getWindow().getWidth());
+                    rootPane.setPrefHeight(rootPane.getScene().getWindow().getHeight());
+                    passButton.setPrefWidth(rootPane.getWidth() * ((double) 1/9));
+                    passButton.setPrefHeight(rootPane.getHeight() * ((double) 1/10));
+                    passButton.setTranslateX(-rootPane.getWidth()/8);
                 }
             }
         }
@@ -62,6 +67,8 @@ public class BoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        t.setDaemon(true);
+        t.start();
         StackPane.setAlignment(passButton, Pos.CENTER_RIGHT);
         String player, opponent;
         try (BufferedReader br = new BufferedReader(new FileReader("gamePlayers.txt"))){
@@ -82,8 +89,7 @@ public class BoardController implements Initializable {
             throw new RuntimeException(e);
         }
         boardSetup();
-        t.setDaemon(true);
-        t.start();
+
     }
 
     private void boardSetup(){
@@ -91,21 +97,24 @@ public class BoardController implements Initializable {
 
         player1.setDeck(shufflePlayerDeck(player1));
         player2.setDeck(shufflePlayerDeck(player2));
-        switch (new Random().nextInt(2)){
+        switch (new Random().nextInt(3)){
             case 0:
                 StackPane.setAlignment(activePlayerImg, Pos.BOTTOM_LEFT);
                 StackPane.setAlignment(opponentImg, Pos.TOP_RIGHT);
                 player1.setFeyre(1);
                 feyreMeter.setProgress((double) player1.getFeyre() /15);
                 healthMeter.setProgress((double) player1.getHealth() /25);
+                play_board.setRotate(180);
+                swapActive(1);
                 break;
             case 1:
                 StackPane.setAlignment(activePlayerImg, Pos.TOP_RIGHT);
                 StackPane.setAlignment(opponentImg, Pos.BOTTOM_LEFT);
                 player2.setFeyre(1);
-                play_board.setRotate(180);
                 feyreMeter.setProgress((double) player2.getFeyre() /15);
                 healthMeter.setProgress((double) player2.getHealth() /25);
+                play_board.setRotate(0);
+                swapActive(2);
                 break;
             default:
                 boardSetup();
@@ -137,6 +146,28 @@ public class BoardController implements Initializable {
         return deck.toArray(new Card[deck.size()]);
     }
 
+    private void swapActive(int a){
+        switch (a){
+            case 1:
+                for (Node c : OpPane.getChildren()) {
+                    c.setDisable(true);
+                }
+                for (Node c : APPane.getChildren()) {
+                    c.setDisable(false);
+                }
+                break;
+            case 2:
+                for (Node c : OpPane.getChildren()) {
+                    c.setDisable(false);
+                }
+                for (Node c : APPane.getChildren()) {
+                    c.setDisable(true);
+                }
+                break;
+            default:
+                return;
+        }
+    }
 
     public void setPlayer1(Player player1) {
         if (player1 != null) {
@@ -155,8 +186,10 @@ public class BoardController implements Initializable {
     public void passTurn(){
         if (play_board.getRotate() == 180){
             play_board.setRotate(0);
+            swapActive(2);
         } else {
             play_board.setRotate(180);
+            swapActive(1);
         }
         List<ImageView> players = Arrays.asList(activePlayerImg, opponentImg);
         for (ImageView p : players) {

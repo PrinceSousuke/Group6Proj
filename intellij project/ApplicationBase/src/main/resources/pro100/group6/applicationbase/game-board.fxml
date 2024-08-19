@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
@@ -36,9 +37,9 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </ProgressBar>
-      <TilePane fx:id="play_board" alignment="CENTER" orientation="VERTICAL" rotate="180.0" styleClass="board" stylesheets="@uiResources/gameboard.css" StackPane.alignment="CENTER">
+      <TilePane fx:id="play_board" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="690.0" rotate="180.0" styleClass="board" stylesheets="@uiResources/gameboard.css" StackPane.alignment="CENTER">
          <children>
-            <Pane id="player1-playspace" prefHeight="269.0" prefWidth="675.0" stylesheets="@uiResources/gameboard.css">
+            <Pane id="player1-playspace" fx:id="APPane" prefHeight="269.0" prefWidth="675.0" stylesheets="@uiResources/gameboard.css">
                <children>
                   <GridPane id="player1row2" fx:id="activePlayerRow2" alignment="CENTER" layoutX="33.0" layoutY="7.0" prefHeight="126.0" prefWidth="652.0" stylesheets="@uiResources/gameboard.css">
                     <columnConstraints>
@@ -133,7 +134,7 @@
                   </GridPane>
                </children>
             </Pane>
-            <Pane id="player2-playspace" prefHeight="268.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css">
+            <Pane id="player2-playspace" fx:id="OpPane" prefHeight="268.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css">
                <children>
                   <GridPane fx:id="opponentRow2" alignment="CENTER" layoutX="33.0" layoutY="22.0" prefHeight="111.0" prefWidth="646.0">
                      <columnConstraints>
@@ -247,5 +248,7 @@
          </image>
       </ImageView>
       <Button id="passButton" fx:id="passButton" mnemonicParsing="false" onAction="#passTurn" stylesheets="@uiResources/gameboard.css" text="Pass" />
+      <Button id="handButton" mnemonicParsing="false" prefHeight="92.0" prefWidth="91.0" stylesheets="@uiResources/gameboard.css" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
+      <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="206.0" prefWidth="710.0" visible="false" StackPane.alignment="BOTTOM_CENTER" />
    </children>
 </StackPane>
