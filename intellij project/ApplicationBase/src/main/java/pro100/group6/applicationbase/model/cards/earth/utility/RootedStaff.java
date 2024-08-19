@@ -1,11 +1,8 @@
 package pro100.group6.applicationbase.model.cards.earth.utility;
 
-import javafx.scene.image.Image;
-import pro100.group6.applicationbase.model.CardClass;
+import pro100.group6.applicationbase.model.enums.CardClass;
 import pro100.group6.applicationbase.model.abstractmodel.Character;
 import pro100.group6.applicationbase.model.abstractmodel.CharaterAbilitySpell;
-
-import java.io.File;
 
 public class RootedStaff extends CharaterAbilitySpell {
     public RootedStaff() {

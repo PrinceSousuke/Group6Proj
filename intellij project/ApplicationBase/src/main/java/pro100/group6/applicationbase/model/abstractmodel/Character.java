@@ -1,11 +1,10 @@
 package pro100.group6.applicationbase.model.abstractmodel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class Character implements Serializable {
+public abstract class Character {
     protected String name;
     protected int feyre;
     protected int health;
@@ -18,10 +17,10 @@ public abstract class Character implements Serializable {
         setHealth(health);
     }
 
-    public void drawCard() {
+    public void drawCard(Character character) {
         Random rng = new Random();
-        int index = rng.nextInt(this.getDeck().length +1);
-        this.hand.add(this.getDeck()[index]);
+        int index = rng.nextInt(character.getDeck().length +1);
+        this.hand.add(character.getDeck()[index]);
     }
 
     // Geters and Setters
