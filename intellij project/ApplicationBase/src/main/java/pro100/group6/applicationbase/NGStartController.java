@@ -8,8 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import pro100.group6.applicationbase.model.Player;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 
 public class NGStartController{

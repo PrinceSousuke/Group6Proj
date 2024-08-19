@@ -1,11 +1,9 @@
 import React from 'react'
-import Nav from './Nav'
 
-function Header(){
+function Header({ title }){
     return (
         <header className="App-header">
-            <p>Nature's Gambit</p>
-            <Nav />
+            <p>{title}</p>
         </header>
     )
 }

@@ -1,23 +1,21 @@
 package pro100.group6.applicationbase.model;
 
-import pro100.group6.applicationbase.model.abstractmodel.Character;
 
-public class CPU extends Character {
-    protected int skillLevel;
+import pro100.group6.applicationbase.model.cards.earth.troops.Satyr;
 
-    public CPU(String name, int feyre, int health) {
-        super(name, feyre, health);
+public class CPU extends Player {
+    protected SkillLevel skillLevel;
+
+    public CPU(String name, SkillLevel skill) {
+        super(name);
+        setSkillLevel(skill);
     }
 
-    public int getSkillLevel() {
+    public SkillLevel getSkillLevel() {
         return skillLevel;
     }
 
-    public void setSkillLevel(int skillLevel) {
-        if (skillLevel < 0) {
-            this.skillLevel = skillLevel;
-        } else {
-            setSkillLevel(1);
-        }
+    public void setSkillLevel(SkillLevel skillLevel) {
+        this.skillLevel = skillLevel;
     }
 }

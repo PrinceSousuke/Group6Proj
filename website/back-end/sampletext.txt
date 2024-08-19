@@ -1,2 +1,0 @@
-Will later implement JavaFX code to put our game into our site.
-Focusing on the front-end first while they work on the game.
