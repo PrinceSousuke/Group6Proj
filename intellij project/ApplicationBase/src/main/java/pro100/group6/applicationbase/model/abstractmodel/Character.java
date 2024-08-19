@@ -7,9 +7,9 @@ public abstract class Character {
     protected Card[] hand;
     protected Card[] deck;
 
-    public Character(String name, int feyre, int health) {
+    public Character(String name,int health) {
         setName(name);
-        setFeyre(feyre);
+        setFeyre(0);
         setHealth(health);
     }
 
