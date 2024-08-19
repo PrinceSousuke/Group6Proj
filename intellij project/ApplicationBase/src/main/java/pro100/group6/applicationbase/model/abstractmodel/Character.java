@@ -17,10 +17,10 @@ public abstract class Character {
         setHealth(health);
     }
 
-    public void drawCard(Character character) {
+    public void drawCard() {
         Random rng = new Random();
-        int index = rng.nextInt(character.getDeck().length +1);
-        this.hand.add(character.getDeck()[index]);
+        int index = rng.nextInt(this.getDeck().length +1);
+        this.hand.add(this.getDeck()[index]);
     }
 
     // Geters and Setters

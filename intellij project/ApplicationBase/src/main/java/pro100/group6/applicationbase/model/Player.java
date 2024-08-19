@@ -6,7 +6,7 @@ public class Player extends Character {
     protected int playerlevel;
 
     public Player(String name) {
-        super(name);
+        super(name, 25);
         setPlayerlevel(1);
     }
 

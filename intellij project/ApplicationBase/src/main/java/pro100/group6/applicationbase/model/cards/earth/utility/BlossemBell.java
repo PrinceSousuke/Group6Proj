@@ -18,6 +18,6 @@ public class BlossemBell extends CharaterAbilitySpell {
 
     @Override
     public void ability(Character character) {
-        character.drawCard();
+        character.drawCard(character);
     }
 }
