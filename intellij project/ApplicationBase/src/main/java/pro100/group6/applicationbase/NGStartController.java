@@ -8,6 +8,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import pro100.group6.applicationbase.model.abstractmodel.Card;
+import pro100.group6.applicationbase.model.cards.air.spells.AirsEmbrace;
+import pro100.group6.applicationbase.model.cards.air.spells.Breeze;
+import pro100.group6.applicationbase.model.cards.air.traps.WindsDeception;
+import pro100.group6.applicationbase.model.cards.air.troops.Aetherwing;
+import pro100.group6.applicationbase.model.cards.air.troops.Harpy;
+import pro100.group6.applicationbase.model.cards.air.troops.Mistara;
+import pro100.group6.applicationbase.model.cards.air.utility.AerialVision;
+import pro100.group6.applicationbase.model.cards.air.utility.SkyblessPendant;
+import pro100.group6.applicationbase.model.cards.earth.spells.BloomBurst;
+import pro100.group6.applicationbase.model.cards.earth.trap.FaerieRing;
+import pro100.group6.applicationbase.model.cards.earth.troops.*;
+import pro100.group6.applicationbase.model.cards.earth.utility.BlossemBell;
+import pro100.group6.applicationbase.model.character.Player;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -41,6 +55,23 @@ public class NGStartController{
 
     @FXML
     private void onPlayGameButtonClick() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("player1.ser"))){
+            Player p = new Player("player1");
+            List<Card> cards = new ArrayList<>(Arrays.asList(new Jackalope(), new Nymph(), new BlossemBell(), new BloomBurst(), new FaerieRing(), new Elves(), new Satyr(), new MrRock()));
+            p.setDeck(cards.toArray(new Card[cards.size()]));
+            out.writeObject(p);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("player2.ser"))){
+            Player p = new Player("player2");
+            List<Card> cards = new ArrayList<>(Arrays.asList(new AirsEmbrace(), new Breeze(), new WindsDeception(), new Aetherwing(), new Harpy(), new Mistara(), new AerialVision(), new SkyblessPendant()));
+            p.setDeck(cards.toArray(new Card[cards.size()]));
+            out.writeObject(p);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         rootPane.getChildren().clear();
         try {
             StackPane newPane = FXMLLoader.load(getClass().getResource("game-launcher.fxml"));

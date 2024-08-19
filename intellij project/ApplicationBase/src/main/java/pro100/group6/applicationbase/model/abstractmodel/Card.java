@@ -2,9 +2,12 @@ package pro100.group6.applicationbase.model.abstractmodel;
 
 import pro100.group6.applicationbase.model.enums.CardClass;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public abstract class Card implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 121212L;
     protected String cardImage;
     protected CardClass cardClass;
     protected int feyreReq;

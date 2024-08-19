@@ -15,8 +15,8 @@ import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import pro100.group6.applicationbase.model.*;
 import pro100.group6.applicationbase.model.abstractmodel.*;
+import pro100.group6.applicationbase.model.character.Player;
 
 import java.io.*;
 import java.net.URL;
@@ -67,8 +67,6 @@ public class BoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        t.setDaemon(true);
-        t.start();
         StackPane.setAlignment(passButton, Pos.CENTER_RIGHT);
         String player, opponent;
         try (BufferedReader br = new BufferedReader(new FileReader("gamePlayers.txt"))){
@@ -89,6 +87,8 @@ public class BoardController implements Initializable {
             throw new RuntimeException(e);
         }
         boardSetup();
+        t.setDaemon(true);
+        t.start();
 
     }
 
