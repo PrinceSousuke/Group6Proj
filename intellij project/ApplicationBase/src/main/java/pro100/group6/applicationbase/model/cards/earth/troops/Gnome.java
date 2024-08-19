@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Gnome extends Troop {
     public Gnome() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(2);
         setDamage(6);

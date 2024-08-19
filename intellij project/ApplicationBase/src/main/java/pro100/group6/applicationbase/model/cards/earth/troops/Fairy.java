@@ -10,7 +10,7 @@ import java.io.File;
 public class Fairy extends Troop {
 
     public Fairy() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(1);
         setDamage(5);

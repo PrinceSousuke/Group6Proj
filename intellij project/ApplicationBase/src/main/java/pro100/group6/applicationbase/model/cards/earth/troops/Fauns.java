@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Fauns extends Troop {
     public Fauns() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(3);
         setDamage(6);

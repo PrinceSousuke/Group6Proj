@@ -9,7 +9,7 @@ import java.io.File;
 
 public class MoonlitMirage extends AbilitySpell {
     public MoonlitMirage() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(2);
         setCardName("Moonlit Mirage");

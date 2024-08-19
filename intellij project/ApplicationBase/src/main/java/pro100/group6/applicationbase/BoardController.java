@@ -9,20 +9,17 @@ package pro100.group6.applicationbase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import pro100.group6.applicationbase.model.*;
-import pro100.group6.applicationbase.model.abstractmodel.Card;
-import pro100.group6.applicationbase.model.cards.earth.spells.MoonlitMirage;
-import pro100.group6.applicationbase.model.cards.earth.spells.Mossglow;
-import pro100.group6.applicationbase.model.cards.earth.spells.SylvanShield;
+import pro100.group6.applicationbase.model.abstractmodel.*;
+import pro100.group6.applicationbase.model.cards.earth.spells.*;
+import pro100.group6.applicationbase.model.cards.earth.trap.*;
 import pro100.group6.applicationbase.model.cards.earth.troops.*;
-import pro100.group6.applicationbase.model.cards.earth.utility.RootedStaff;
+import pro100.group6.applicationbase.model.cards.earth.utility.*;
 
 import java.io.*;
 import java.net.URL;
@@ -30,6 +27,7 @@ import java.util.*;
 
 
 public class BoardController implements Initializable {
+    private String resourcesRoot = "src/main/resources/pro100/group6/applicationbase/";
     private Player player1;
     private Player player2;
     @FXML
@@ -38,7 +36,7 @@ public class BoardController implements Initializable {
     private ProgressBar feyreMeter, healthMeter;
 
     @FXML
-    private ImageView activePlayerImg, opponentImg;
+    private ImageView activePlayerImg, opponentImg, testImage;
 
     @FXML
     private GridPane activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2;
@@ -50,6 +48,7 @@ public class BoardController implements Initializable {
     private TilePane play_board;
 
     private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
+
 
 
 
@@ -78,6 +77,7 @@ public class BoardController implements Initializable {
     }
 
     private void boardSetup(){
+        ArrayList<GridPane> rows = new ArrayList<>(Arrays.asList(activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2));
         List<Card> p1cards = new ArrayList<>(Arrays.asList(new Mossglow(), new Satyr(), new SylvanShield(), new Fairy(), new RootedStaff(), new Banshee()));
         List<Card> p2cards = new ArrayList<>(Arrays.asList(new MrRock(), new MoonlitMirage(), new Gnome(), new RootedStaff(), new Nymph(), new Jackalope()));
         player1.setDeck(p1cards.toArray(new Card[p1cards.size()]));
@@ -102,6 +102,18 @@ public class BoardController implements Initializable {
                 break;
             default:
                 boardSetup();
+        }
+        for (GridPane r : rows) {
+            r.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                Node clickedE = (Node) e.getTarget();
+                System.out.println(clickedE.getId());
+                ArrayList<String> noTouch = new ArrayList<>(Arrays.asList("APGrave","APDeck","OpDeck","OpGrave"));
+                if (clickedE.getClass() == ImageView.class){
+                    if (!noTouch.contains(clickedE.getId())) {
+                        ((ImageView) clickedE).setImage(new Image(new File(resourcesRoot + "uiResources/cardGuy.png").toURI().toString()));
+                    }
+                }
+            });
         }
     }
 
@@ -162,7 +174,6 @@ public class BoardController implements Initializable {
             StackPane.setAlignment(iv, Pos.BOTTOM_LEFT);
         }
     }
-
 
 
 

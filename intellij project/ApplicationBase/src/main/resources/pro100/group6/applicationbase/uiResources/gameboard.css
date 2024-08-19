@@ -1,6 +1,3 @@
-.board {
-    -fx-alignment: center;
-}
 
 #player1-playspace {
     -fx-translate-y: -35;
@@ -19,7 +16,7 @@
     -fx-alignment: center-left;
     -fx-translate-x: -80;
     -fx-translate-y: -80;
-    -fx-accent: lightblue;
+    -fx-accent: darkslateblue;
 }
 
 #opponentImg {
@@ -36,4 +33,7 @@
     -fx-font-size: 25;
     -fx-font-family: "Viner Hand ITC";
     -fx-text-fill: maroon;
+    -fx-border-color: grey;
+    -fx-border-width: 5px;
+    -fx-background-color: linen;
 }

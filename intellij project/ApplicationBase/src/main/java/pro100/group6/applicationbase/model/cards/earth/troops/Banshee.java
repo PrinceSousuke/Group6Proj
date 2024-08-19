@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Banshee extends Troop {
     public Banshee() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(5);
         setDamage(7);

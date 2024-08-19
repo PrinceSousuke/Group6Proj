@@ -9,7 +9,7 @@ import java.io.File;
 
 public class SylvanShield extends AbilitySpell {
     public SylvanShield() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(2);
         setCardName("SylvanShield");

@@ -9,7 +9,7 @@ import java.io.File;
 
 public class RootedStaff extends CharaterAbilitySpell {
     public RootedStaff() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(0);
         setCardName("Rooted Staff");

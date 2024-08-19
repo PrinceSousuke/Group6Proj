@@ -3,7 +3,9 @@ package pro100.group6.applicationbase.model.abstractmodel;
 import javafx.scene.image.Image;
 import pro100.group6.applicationbase.model.CardClass;
 
-public abstract class Card {
+import java.io.Serializable;
+
+public abstract class Card implements Serializable {
     protected String cardImage;
     protected CardClass cardClass;
     protected int feyreReq;

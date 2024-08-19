@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Elves extends Troop {
     public Elves() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(1);
         setDamage(3);
