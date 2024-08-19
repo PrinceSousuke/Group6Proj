@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import pro100.group6.applicationbase.model.CardClass;
 
 public abstract class Card {
-    protected Image cardImage;
+    protected String cardImage;
     protected CardClass cardClass;
     protected int feyreReq;
     protected String cardName;
@@ -34,11 +34,11 @@ public abstract class Card {
         }
     }
 
-    public Image getCardImage() {
+    public String getCardImage() {
         return cardImage;
     }
 
-    protected void setCardImage(Image cardImage) {
+    protected void setCardImage(String cardImage) {
         if (cardImage != null) {
             this.cardImage = cardImage;
         }
