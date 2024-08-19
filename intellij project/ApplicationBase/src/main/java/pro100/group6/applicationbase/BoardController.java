@@ -14,16 +14,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import pro100.group6.applicationbase.model.*;
 import pro100.group6.applicationbase.model.abstractmodel.*;
-import pro100.group6.applicationbase.model.cards.earth.spells.*;
-import pro100.group6.applicationbase.model.cards.earth.trap.*;
-import pro100.group6.applicationbase.model.cards.earth.troops.*;
-import pro100.group6.applicationbase.model.cards.earth.utility.*;
 
 import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class BoardController implements Initializable {
@@ -36,7 +34,7 @@ public class BoardController implements Initializable {
     private ProgressBar feyreMeter, healthMeter;
 
     @FXML
-    private ImageView activePlayerImg, opponentImg, testImage;
+    private ImageView activePlayerImg, opponentImg;
 
     @FXML
     private GridPane activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2;
@@ -49,6 +47,16 @@ public class BoardController implements Initializable {
 
     private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
 
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (true) {
+                if (rootPane != null) {
+
+                }
+            }
+        }
+    });
 
 
 
@@ -74,14 +82,13 @@ public class BoardController implements Initializable {
             throw new RuntimeException(e);
         }
         boardSetup();
+        t.setDaemon(true);
+        t.start();
     }
 
     private void boardSetup(){
         ArrayList<GridPane> rows = new ArrayList<>(Arrays.asList(activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2));
-        List<Card> p1cards = new ArrayList<>(Arrays.asList(new Mossglow(), new Satyr(), new SylvanShield(), new Fairy(), new RootedStaff(), new Banshee()));
-        List<Card> p2cards = new ArrayList<>(Arrays.asList(new MrRock(), new MoonlitMirage(), new Gnome(), new RootedStaff(), new Nymph(), new Jackalope()));
-        player1.setDeck(p1cards.toArray(new Card[p1cards.size()]));
-        player2.setDeck(p2cards.toArray(new Card[p2cards.size()]));
+
         player1.setDeck(shufflePlayerDeck(player1));
         player2.setDeck(shufflePlayerDeck(player2));
         switch (new Random().nextInt(2)){

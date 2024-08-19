@@ -1,10 +1,11 @@
 package pro100.group6.applicationbase.model.abstractmodel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class Character {
+public abstract class Character implements Serializable {
     protected String name;
     protected int feyre;
     protected int health;
