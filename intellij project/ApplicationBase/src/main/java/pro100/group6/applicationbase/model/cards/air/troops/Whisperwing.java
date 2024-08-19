@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Whisperwing extends Troop {
     public Whisperwing() {
-        setCardImage(new Image(new File("uiResources/cardGuy.png").toURI().toString()));
+        setCardImage("uiResources/cardGuy.png");
         setCardClass(CardClass.AIR);
         setFeyreReq(5);
         setDamage(7);
