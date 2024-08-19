@@ -1,10 +1,14 @@
 package pro100.group6.applicationbase.model.abstractmodel;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public abstract class Character {
     protected String name;
     protected int feyre;
     protected int health;
-    protected Card[] hand;
+    protected List<Card> hand;
     protected Card[] deck;
 
     public Character(String name, int feyre, int health) {
@@ -13,14 +17,20 @@ public abstract class Character {
         setHealth(health);
     }
 
+    public void drawCard(Character character) {
+        Random rng = new Random();
+        int index = rng.nextInt(character.getDeck().length +1);
+        this.hand.add(character.getDeck()[index]);
+    }
+
     // Geters and Setters
-    public Card[] getHand() {
+    public List<Card> getHand() {
         return hand;
     }
 
-    public void setHand(Card[] hand) {
+    public void setHand(List<Card> hand) {
         if (hand == null) {
-            this.hand = new Card[0];
+            this.hand = new ArrayList<>();
         } else {
             this.hand = hand;
         }
