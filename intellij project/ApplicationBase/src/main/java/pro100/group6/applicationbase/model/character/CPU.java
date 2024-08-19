@@ -1,7 +1,7 @@
-package pro100.group6.applicationbase.model;
+package pro100.group6.applicationbase.model.character;
 
 
-import pro100.group6.applicationbase.model.cards.earth.troops.Satyr;
+import pro100.group6.applicationbase.model.enums.SkillLevel;
 
 public class CPU extends Player {
     protected SkillLevel skillLevel;

@@ -1,11 +1,7 @@
 package pro100.group6.applicationbase.model.cards.earth.trap;
 
-import javafx.scene.image.Image;
-import pro100.group6.applicationbase.model.CardClass;
+import pro100.group6.applicationbase.model.enums.CardClass;
 import pro100.group6.applicationbase.model.abstractmodel.AbilitySpell;
-import pro100.group6.applicationbase.model.abstractmodel.Card;
-
-import java.io.File;
 
 public class FaerieRing extends AbilitySpell {
     public FaerieRing() {

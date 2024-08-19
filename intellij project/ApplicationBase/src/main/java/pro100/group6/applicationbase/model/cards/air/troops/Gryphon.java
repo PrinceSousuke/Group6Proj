@@ -1,10 +1,7 @@
 package pro100.group6.applicationbase.model.cards.air.troops;
 
-import javafx.scene.image.Image;
-import pro100.group6.applicationbase.model.CardClass;
+import pro100.group6.applicationbase.model.enums.CardClass;
 import pro100.group6.applicationbase.model.abstractmodel.Troop;
-
-import java.io.File;
 
 public class Gryphon extends Troop {
     public Gryphon() {

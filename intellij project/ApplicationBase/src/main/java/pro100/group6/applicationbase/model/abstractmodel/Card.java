@@ -1,7 +1,6 @@
 package pro100.group6.applicationbase.model.abstractmodel;
 
-import javafx.scene.image.Image;
-import pro100.group6.applicationbase.model.CardClass;
+import pro100.group6.applicationbase.model.enums.CardClass;
 
 import java.io.Serializable;
 

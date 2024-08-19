@@ -1,11 +1,8 @@
 package pro100.group6.applicationbase.model.cards.earth.troops;
 
 
-import javafx.scene.image.Image;
-import pro100.group6.applicationbase.model.*;
 import pro100.group6.applicationbase.model.abstractmodel.Troop;
-
-import java.io.File;
+import pro100.group6.applicationbase.model.enums.CardClass;
 
 public class Fairy extends Troop {
 
