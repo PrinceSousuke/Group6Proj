@@ -24,7 +24,7 @@ import java.util.*;
 
 
 public class BoardController implements Initializable {
-    private String resourcesRoot = "src/main/resources/pro100/group6/applicationbase/";
+    private final String resourcesRoot = "src/main/resources/pro100/group6/applicationbase/";
     private Player player1;
     private Player player2;
     @FXML
@@ -32,7 +32,7 @@ public class BoardController implements Initializable {
     @FXML
     private ProgressBar feyreMeter, healthMeter;
     @FXML
-    private Pane APPane, OpPane;
+    private HBox playerHand;
 
     @FXML
     private ImageView activePlayerImg, opponentImg;
@@ -47,6 +47,7 @@ public class BoardController implements Initializable {
     private TilePane play_board;
 
     private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
+    private final HashMap<ImageView, Card> cardHashMap = new HashMap<>();
 
     Thread t = new Thread(new Runnable() {
         @Override
@@ -58,16 +59,17 @@ public class BoardController implements Initializable {
                     passButton.setPrefWidth(rootPane.getWidth() * ((double) 1/9));
                     passButton.setPrefHeight(rootPane.getHeight() * ((double) 1/10));
                     passButton.setTranslateX(-rootPane.getWidth()/8);
+                    activePlayerImg.setFitWidth(rootPane.getWidth()/6);
+                    activePlayerImg.setFitHeight(rootPane.getHeight()/3.5);
+
+                    play_board.setPrefHeight(rootPane.getHeight());
                     for (Node c : play_board.getChildren()) {
                         if (c instanceof Pane) {
                             for (Node g : ((Pane) c).getChildren()) {
                                 if (g instanceof GridPane) {
-                                    
-
                                     for (Node i : ((GridPane) g).getChildren()) {
                                         if (i instanceof ImageView) {
                                             ((ImageView) i).setFitHeight(rootPane.getHeight() / 6);
-//                                            ((ImageView) i).setFitWidth(rootPane.getWidth() * ((double) 68/1000));
                                         }
                                     }
                                 }
@@ -113,6 +115,23 @@ public class BoardController implements Initializable {
 
         player1.setDeck(shufflePlayerDeck(player1));
         player2.setDeck(shufflePlayerDeck(player2));
+        List<Card> p1hand = new ArrayList<>();
+        List<Card> p2hand = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            if (player1.getHand() != null) {
+                p1hand = player1.getHand();
+            }
+            p1hand.add(player1.getDeck()[i]);
+            player1.setHand(p1hand);
+        }
+        for (int i = 0; i < 5; i++) {
+            if (player2.getHand() != null) {
+                p2hand = player2.getHand();
+            }
+            p2hand.add(player2.getDeck()[i]);
+            player2.setHand(p2hand);
+        }
+
         switch (new Random().nextInt(3)){
             case 0:
                 StackPane.setAlignment(activePlayerImg, Pos.BOTTOM_LEFT);
@@ -121,7 +140,6 @@ public class BoardController implements Initializable {
                 feyreMeter.setProgress((double) player1.getFeyre() /15);
                 healthMeter.setProgress((double) player1.getHealth() /25);
                 play_board.setRotate(180);
-                swapActive(1);
                 break;
             case 1:
                 StackPane.setAlignment(activePlayerImg, Pos.TOP_RIGHT);
@@ -130,7 +148,6 @@ public class BoardController implements Initializable {
                 feyreMeter.setProgress((double) player2.getFeyre() /15);
                 healthMeter.setProgress((double) player2.getHealth() /25);
                 play_board.setRotate(0);
-                swapActive(2);
                 break;
             default:
                 boardSetup();
@@ -162,29 +179,6 @@ public class BoardController implements Initializable {
         return deck.toArray(new Card[deck.size()]);
     }
 
-    private void swapActive(int a){
-        switch (a){
-            case 1:
-                for (Node c : OpPane.getChildren()) {
-                    c.setDisable(true);
-                }
-                for (Node c : APPane.getChildren()) {
-                    c.setDisable(false);
-                }
-                break;
-            case 2:
-                for (Node c : OpPane.getChildren()) {
-                    c.setDisable(false);
-                }
-                for (Node c : APPane.getChildren()) {
-                    c.setDisable(true);
-                }
-                break;
-            default:
-                return;
-        }
-    }
-
     public void setPlayer1(Player player1) {
         if (player1 != null) {
             this.player1 = player1;
@@ -202,10 +196,8 @@ public class BoardController implements Initializable {
     public void passTurn(){
         if (play_board.getRotate() == 180){
             play_board.setRotate(0);
-            swapActive(2);
         } else {
             play_board.setRotate(180);
-            swapActive(1);
         }
         List<ImageView> players = Arrays.asList(activePlayerImg, opponentImg);
         for (ImageView p : players) {

@@ -8,9 +8,6 @@
     -fx-translate-y: 35;
 }
 
-#player1row2{
-    -fx-end-margin: 200;
-}
 
 #feyreMeter {
     -fx-alignment: center-left;
