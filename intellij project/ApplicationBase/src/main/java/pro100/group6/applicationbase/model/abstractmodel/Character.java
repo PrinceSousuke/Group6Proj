@@ -31,7 +31,7 @@ public abstract class Character implements Serializable {
     public void drawCreature(){
         Random rng = new Random();
         int index = rng.nextInt(getDeck().length+1);
-        if (getDeck()[index].getClass().getSuperclass() == Troop.class){
+        if (getDeck()[index] instanceof Troop){
             this.hand.add(getDeck()[index]);
         } else {
             drawCreature();

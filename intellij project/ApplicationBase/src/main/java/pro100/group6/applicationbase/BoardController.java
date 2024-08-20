@@ -58,6 +58,22 @@ public class BoardController implements Initializable {
                     passButton.setPrefWidth(rootPane.getWidth() * ((double) 1/9));
                     passButton.setPrefHeight(rootPane.getHeight() * ((double) 1/10));
                     passButton.setTranslateX(-rootPane.getWidth()/8);
+                    for (Node c : play_board.getChildren()) {
+                        if (c instanceof Pane) {
+                            for (Node g : ((Pane) c).getChildren()) {
+                                if (g instanceof GridPane) {
+                                    
+
+                                    for (Node i : ((GridPane) g).getChildren()) {
+                                        if (i instanceof ImageView) {
+                                            ((ImageView) i).setFitHeight(rootPane.getHeight() / 6);
+//                                            ((ImageView) i).setFitWidth(rootPane.getWidth() * ((double) 68/1000));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
