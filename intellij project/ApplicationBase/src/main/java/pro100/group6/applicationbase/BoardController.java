@@ -47,13 +47,15 @@ public class BoardController implements Initializable {
     private TilePane play_board;
 
     private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
-    private final HashMap<ImageView, Card> cardHashMap = new HashMap<>();
+    private final HashMap<Image, Card> cardHashMap = new HashMap<>();
 
     Thread t = new Thread(new Runnable() {
         @Override
         public void run() {
             while (true) {
                 if (rootPane != null) {
+//                    rootPane.setLayoutX(0);
+//                    rootPane.setLayoutY(0);
                     rootPane.setPrefWidth(rootPane.getScene().getWindow().getWidth());
                     rootPane.setPrefHeight(rootPane.getScene().getWindow().getHeight());
                     passButton.setPrefWidth(rootPane.getWidth() * ((double) 1/9));
@@ -115,24 +117,9 @@ public class BoardController implements Initializable {
 
         player1.setDeck(shufflePlayerDeck(player1));
         player2.setDeck(shufflePlayerDeck(player2));
-        List<Card> p1hand = new ArrayList<>();
-        List<Card> p2hand = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            if (player1.getHand() != null) {
-                p1hand = player1.getHand();
-            }
-            p1hand.add(player1.getDeck()[i]);
-            player1.setHand(p1hand);
-        }
-        for (int i = 0; i < 5; i++) {
-            if (player2.getHand() != null) {
-                p2hand = player2.getHand();
-            }
-            p2hand.add(player2.getDeck()[i]);
-            player2.setHand(p2hand);
-        }
+        Map<Integer, Player> turnDefinitions = new HashMap<>();
 
-        switch (new Random().nextInt(3)){
+        switch (new Random().nextInt(2)){
             case 0:
                 StackPane.setAlignment(activePlayerImg, Pos.BOTTOM_LEFT);
                 StackPane.setAlignment(opponentImg, Pos.TOP_RIGHT);
@@ -140,6 +127,8 @@ public class BoardController implements Initializable {
                 feyreMeter.setProgress((double) player1.getFeyre() /15);
                 healthMeter.setProgress((double) player1.getHealth() /25);
                 play_board.setRotate(180);
+                turnDefinitions.put(1,player1);
+                turnDefinitions.put(2,player2);
                 break;
             case 1:
                 StackPane.setAlignment(activePlayerImg, Pos.TOP_RIGHT);
@@ -148,9 +137,9 @@ public class BoardController implements Initializable {
                 feyreMeter.setProgress((double) player2.getFeyre() /15);
                 healthMeter.setProgress((double) player2.getHealth() /25);
                 play_board.setRotate(0);
+                turnDefinitions.put(1,player2);
+                turnDefinitions.put(2,player1);
                 break;
-            default:
-                boardSetup();
         }
         for (GridPane r : rows) {
             r.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -164,6 +153,27 @@ public class BoardController implements Initializable {
                 }
             });
         }
+        for (int i = 0; i < 3; i++) {
+            List<Card> cards = new ArrayList<>();
+            if (turnDefinitions.get(1).getHand() != null){
+                cards.addAll(turnDefinitions.get(1).getHand());
+            }
+            List<Card> deck = new ArrayList<>(Arrays.asList(turnDefinitions.get(1).getDeck()));
+            cards.add(deck.get(i));
+            turnDefinitions.get(1).setHand(cards);
+        }
+        System.out.println(turnDefinitions.get(1).getHand());
+        for (int i = 0; i < 4; i++) {
+            List<Card> cards = new ArrayList<>();
+            if (turnDefinitions.get(2).getHand() != null){
+                cards.addAll(turnDefinitions.get(2).getHand());
+            }
+            List<Card> deck = new ArrayList<>(Arrays.asList(turnDefinitions.get(2).getDeck()));
+            cards.add(deck.get(i));
+            turnDefinitions.get(2).setHand(cards);
+        }
+        System.out.println(turnDefinitions.get(2).getHand());
+
     }
 
 
@@ -194,6 +204,9 @@ public class BoardController implements Initializable {
     }
 
     public void passTurn(){
+        if (playerHand.isVisible()) {
+            playerHand.setVisible(false);
+        }
         if (play_board.getRotate() == 180){
             play_board.setRotate(0);
         } else {
@@ -223,6 +236,38 @@ public class BoardController implements Initializable {
         }
     }
 
+    @FXML
+    private void showHand(){
+        Player p = null;
+        if (StackPane.getAlignment(activePlayerImg) == Pos.BOTTOM_LEFT) {
+            p = playerHashMap.get(activePlayerImg);
+        }
+        if (StackPane.getAlignment(opponentImg) == Pos.BOTTOM_LEFT) {
+            p = playerHashMap.get(opponentImg);
+        }
+        List<Card> hand = new ArrayList<>();
+        if (p != null){
+            hand = p.getHand();
+        }
+
+        playerHand.getChildren().clear();
+        for (Card c : hand) {
+            insertCardFromHand(c);
+        }
+    }
+
+    private void insertCardFromHand(Card c){
+        playerHand.setVisible(true);
+        ImageView iv = new ImageView();
+        Image ci = new Image(new File(resourcesRoot + c.getCardImage()).toURI().toString());
+        iv.setImage(ci);
+        cardHashMap.put(ci, c);
+        playerHand.getChildren().add(iv);
+        for (Node i : playerHand.getChildren()) {
+            ((ImageView) i).setFitHeight(150);
+            ((ImageView) i).setFitWidth(80);
+        }
+    }
 
 
 }

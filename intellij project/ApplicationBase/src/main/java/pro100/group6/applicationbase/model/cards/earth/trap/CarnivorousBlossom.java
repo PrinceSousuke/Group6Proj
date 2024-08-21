@@ -1,7 +1,6 @@
 package pro100.group6.applicationbase.model.cards.earth.trap;
 
 import pro100.group6.applicationbase.model.enums.CardClass;
-import pro100.group6.applicationbase.model.abstractmodel.Ability;
 import pro100.group6.applicationbase.model.abstractmodel.AbilitySpell;
 
 public class CarnivorousBlossom extends AbilitySpell {

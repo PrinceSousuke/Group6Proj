@@ -4,6 +4,5 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Mistara extends Troop {
     public Mistara() {
-
     }
 }

@@ -248,7 +248,7 @@
          </image>
       </ImageView>
       <Button id="passButton" fx:id="passButton" mnemonicParsing="false" onAction="#passTurn" stylesheets="@uiResources/gameboard.css" text="Pass" />
-      <Button id="handButton" mnemonicParsing="false" prefHeight="92.0" prefWidth="91.0" stylesheets="@uiResources/gameboard.css" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
-      <HBox fx:id="playerHand" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="206.0" prefWidth="710.0" visible="false" StackPane.alignment="BOTTOM_CENTER" />
+      <Button id="handButton" fx:id="handButton" mnemonicParsing="false" onAction="#showHand" prefHeight="92.0" prefWidth="91.0" stylesheets="@uiResources/gameboard.css" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
+      <HBox fx:id="playerHand" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="710.0" visible="false" StackPane.alignment="BOTTOM_CENTER" />
    </children>
 </StackPane>
