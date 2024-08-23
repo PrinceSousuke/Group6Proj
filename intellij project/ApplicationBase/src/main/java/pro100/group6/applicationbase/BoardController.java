@@ -190,7 +190,6 @@ public class BoardController implements Initializable {
         if (e.getTarget() instanceof ImageView && e.getTarget() != null){
             ImageView i = (ImageView) e.getTarget();
             Dragboard db = i.startDragAndDrop(TransferMode.ANY);
-
             Image image = i.getImage();
             ClipboardContent content = new ClipboardContent();
             content.putImage(image);
@@ -198,7 +197,7 @@ public class BoardController implements Initializable {
         }
     }
 
-    public void onDropDetectedFromHand(MouseEvent e){
+    public void onDropDetectedFromHand(DragEvent e){
     }
 
 
@@ -297,6 +296,4 @@ public class BoardController implements Initializable {
             });
         }
     }
-
-
 }
