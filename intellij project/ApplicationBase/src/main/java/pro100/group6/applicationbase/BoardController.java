@@ -13,7 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import pro100.group6.applicationbase.model.abstractmodel.*;
@@ -184,6 +184,21 @@ public class BoardController implements Initializable {
         }
         System.out.println(turnDefinitions.get(2).getHand());
 
+    }
+
+    public void onDragDetectedFromHand(MouseEvent e){
+        if (e.getTarget() instanceof ImageView && e.getTarget() != null){
+            ImageView i = (ImageView) e.getTarget();
+            Dragboard db = i.startDragAndDrop(TransferMode.ANY);
+
+            Image image = i.getImage();
+            ClipboardContent content = new ClipboardContent();
+            content.putImage(image);
+            db.setContent(content);
+        }
+    }
+
+    public void onDropDetectedFromHand(MouseEvent e){
     }
 
 
