@@ -170,7 +170,6 @@ public class BoardController implements Initializable {
                                     i.setOnDragExited(new EventHandler<DragEvent>() {
                                         @Override
                                         public void handle(DragEvent dragEvent) {
-
                                             ((ImageView)i).setImage(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()));
                                         }
                                     });
@@ -327,8 +326,10 @@ public class BoardController implements Initializable {
                             for (Node grid : APPane.getChildren()) {
                                 for (Node view : ((GridPane) grid).getChildren()) {
                                     if (view.getId().equals(selectedImage)&& ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
-                                        ((ImageView) view).setImage(content.getImage());
-                                        player1.getHand().remove(cardHashMap.get(ci));
+                                        if (player1.getFeyre() >= cardHashMap.get(ci).getFeyreReq()) {
+                                            ((ImageView) view).setImage(content.getImage());
+                                            player1.getHand().remove(cardHashMap.get(ci));
+                                        }
                                     }
                                 }
                             }
@@ -337,8 +338,10 @@ public class BoardController implements Initializable {
                             for (Node grid : OpPane.getChildren()) {
                                 for (Node view : ((GridPane) grid).getChildren()) {
                                     if (view.getId().equals(selectedImage) && ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
-                                        ((ImageView) view).setImage(content.getImage());
-                                        player2.getHand().remove(cardHashMap.get(ci));
+                                        if (player2.getFeyre() >= cardHashMap.get(ci).getFeyreReq()) {
+                                            ((ImageView) view).setImage(content.getImage());
+                                            player2.getHand().remove(cardHashMap.get(ci));
+                                        }
                                     }
                                 }
                             }
