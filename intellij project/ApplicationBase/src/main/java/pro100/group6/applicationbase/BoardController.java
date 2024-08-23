@@ -41,12 +41,16 @@ public class BoardController implements Initializable {
     @FXML
     private ImageView activePlayerImg, opponentImg;
 
+    private String selectedImage = "";
+
     @FXML
     private GridPane activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2;
 
     @FXML
     private Button passButton, testButton;
 
+
+    ArrayList<String> noTouch = new ArrayList<>(Arrays.asList("APGrave","APDeck","OpDeck","OpGrave"));
 
     private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
     private final HashMap<Image, Card> cardHashMap = new HashMap<>();
@@ -153,26 +157,29 @@ public class BoardController implements Initializable {
                 break;
         }
         for (GridPane r : rows) {
-            ArrayList<String> noTouch = new ArrayList<>(Arrays.asList("APGrave","APDeck","OpDeck","OpGrave"));
             for (Node i : r.getChildren()){
                 if (i instanceof ImageView){
                     ClipboardContent content = new ClipboardContent();
                     i.setOnDragEntered(new EventHandler<DragEvent>() {
-
                         @Override
                         public void handle(DragEvent dragEvent) {
                             Dragboard db = dragEvent.getDragboard();
                             if (!noTouch.contains(i.getId())) {
-                                ((ImageView) i).setImage(db.getImage());
+                                if (((ImageView)i).getImage().equals(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()))) {
+                                    ((ImageView) i).setImage(db.getImage());
+                                    i.setOnDragExited(new EventHandler<DragEvent>() {
+                                        @Override
+                                        public void handle(DragEvent dragEvent) {
+
+                                            ((ImageView)i).setImage(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()));
+                                        }
+                                    });
+                                }
                             }
+                            selectedImage = i.getId();
                         }
                     });
-                    i.setOnDragExited(new EventHandler<DragEvent>() {
-                        @Override
-                        public void handle(DragEvent dragEvent) {
-                            ((ImageView)i).setImage(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()));
-                        }
-                    });
+
                 }
             }
         }
@@ -309,13 +316,37 @@ public class BoardController implements Initializable {
             ((ImageView) i).setFitWidth(80);
             i.setOnMouseDragged(e->{
                 playerHand.setVisible(false);
-
                 ClipboardContent content = new ClipboardContent();
                 i.setOnDragDetected(de -> {
                     content.putImage(onDragDetectedFromHand(e).getImage());
                 });
-                i.setOnMouseReleased(re -> System.out.println("why"));
+                i.setOnDragDone(done -> {
+
+                    if (!noTouch.contains(selectedImage)) {
+                        if (StackPane.getAlignment(activePlayerImg) == Pos.BOTTOM_LEFT) {
+                            for (Node grid : APPane.getChildren()) {
+                                for (Node view : ((GridPane) grid).getChildren()) {
+                                    if (view.getId().equals(selectedImage)&& ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
+                                        ((ImageView) view).setImage(content.getImage());
+                                        player1.getHand().remove(cardHashMap.get(ci));
+                                    }
+                                }
+                            }
+                        }
+                        if (StackPane.getAlignment(opponentImg) == Pos.BOTTOM_LEFT) {
+                            for (Node grid : OpPane.getChildren()) {
+                                for (Node view : ((GridPane) grid).getChildren()) {
+                                    if (view.getId().equals(selectedImage) && ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
+                                        ((ImageView) view).setImage(content.getImage());
+                                        player2.getHand().remove(cardHashMap.get(ci));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
             });
+
         }
     }
 
