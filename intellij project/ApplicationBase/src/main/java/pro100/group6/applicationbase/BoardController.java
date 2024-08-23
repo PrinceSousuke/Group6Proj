@@ -6,6 +6,7 @@
  */
 package pro100.group6.applicationbase;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -15,13 +16,13 @@ import javafx.scene.image.*;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import pro100.group6.applicationbase.model.abstractmodel.*;
 import pro100.group6.applicationbase.model.character.Player;
 
 import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class BoardController implements Initializable {
@@ -152,16 +153,28 @@ public class BoardController implements Initializable {
                 break;
         }
         for (GridPane r : rows) {
-            r.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                Node clickedE = (Node) e.getTarget();
-                System.out.println(clickedE.getId());
-                ArrayList<String> noTouch = new ArrayList<>(Arrays.asList("APGrave","APDeck","OpDeck","OpGrave"));
-                if (clickedE.getClass() == ImageView.class){
-                    if (!noTouch.contains(clickedE.getId())) {
-                        ((ImageView) clickedE).setImage(new Image(new File(resourcesRoot + "uiResources/cardGuy.png").toURI().toString()));
-                    }
+            ArrayList<String> noTouch = new ArrayList<>(Arrays.asList("APGrave","APDeck","OpDeck","OpGrave"));
+            for (Node i : r.getChildren()){
+                if (i instanceof ImageView){
+                    ClipboardContent content = new ClipboardContent();
+                    i.setOnDragEntered(new EventHandler<DragEvent>() {
+
+                        @Override
+                        public void handle(DragEvent dragEvent) {
+                            Dragboard db = dragEvent.getDragboard();
+                            if (!noTouch.contains(i.getId())) {
+                                ((ImageView) i).setImage(db.getImage());
+                            }
+                        }
+                    });
+                    i.setOnDragExited(new EventHandler<DragEvent>() {
+                        @Override
+                        public void handle(DragEvent dragEvent) {
+                            ((ImageView)i).setImage(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()));
+                        }
+                    });
                 }
-            });
+            }
         }
         for (int i = 0; i < 3; i++) {
             List<Card> cards = new ArrayList<>();
@@ -186,18 +199,22 @@ public class BoardController implements Initializable {
 
     }
 
-    public void onDragDetectedFromHand(MouseEvent e){
+    public Dragboard onDragDetectedFromHand(MouseEvent e){
         if (e.getTarget() instanceof ImageView && e.getTarget() != null){
             ImageView i = (ImageView) e.getTarget();
             Dragboard db = i.startDragAndDrop(TransferMode.ANY);
+
             Image image = i.getImage();
             ClipboardContent content = new ClipboardContent();
             content.putImage(image);
             db.setContent(content);
+            return db;
         }
+        return null;
     }
 
     public void onDropDetectedFromHand(DragEvent e){
+
     }
 
 
@@ -292,8 +309,15 @@ public class BoardController implements Initializable {
             ((ImageView) i).setFitWidth(80);
             i.setOnMouseDragged(e->{
                 playerHand.setVisible(false);
-                i.setOnDragDetected(de -> onDragDetectedFromHand(e));
+
+                ClipboardContent content = new ClipboardContent();
+                i.setOnDragDetected(de -> {
+                    content.putImage(onDragDetectedFromHand(e).getImage());
+                });
+                i.setOnMouseReleased(re -> System.out.println("why"));
             });
         }
     }
+
+
 }
