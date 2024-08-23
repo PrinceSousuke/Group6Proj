@@ -324,32 +324,31 @@ public class BoardController implements Initializable {
                     if (!noTouch.contains(selectedImage)) {
                         if (StackPane.getAlignment(activePlayerImg) == Pos.BOTTOM_LEFT) {
                             for (Node grid : APPane.getChildren()) {
-                                for (Node view : ((GridPane) grid).getChildren()) {
-                                    if (view.getId().equals(selectedImage)&& ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
-                                        if (player1.getFeyre() >= cardHashMap.get(ci).getFeyreReq()) {
-                                            ((ImageView) view).setImage(content.getImage());
-                                            player1.getHand().remove(cardHashMap.get(ci));
-                                        }
-                                    }
-                                }
+                                dropperChecker(ci, content, (GridPane) grid, player1);
                             }
                         }
                         if (StackPane.getAlignment(opponentImg) == Pos.BOTTOM_LEFT) {
                             for (Node grid : OpPane.getChildren()) {
-                                for (Node view : ((GridPane) grid).getChildren()) {
-                                    if (view.getId().equals(selectedImage) && ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
-                                        if (player2.getFeyre() >= cardHashMap.get(ci).getFeyreReq()) {
-                                            ((ImageView) view).setImage(content.getImage());
-                                            player2.getHand().remove(cardHashMap.get(ci));
-                                        }
-                                    }
-                                }
+                                dropperChecker(ci, content, (GridPane) grid, player2);
                             }
                         }
                     }
                 });
             });
 
+        }
+    }
+
+    private void dropperChecker(Image ci, ClipboardContent content, GridPane grid, Player player) {
+        for (Node view : grid.getChildren()) {
+            if (view.getId().equals(selectedImage)&& ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
+                if (player.getFeyre() >= cardHashMap.get(ci).getFeyreReq()) {
+                    ((ImageView) view).setImage(content.getImage());
+                    player.getHand().remove(cardHashMap.get(ci));
+                    player.setFeyre(player.getFeyre() - cardHashMap.get(ci).getFeyreReq());
+                    feyreMeter.setProgress((double) player.getFeyre() /25);
+                }
+            }
         }
     }
 
