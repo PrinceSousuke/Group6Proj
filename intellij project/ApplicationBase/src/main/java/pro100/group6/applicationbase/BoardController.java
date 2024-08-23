@@ -293,6 +293,7 @@ public class BoardController implements Initializable {
             ((ImageView) i).setFitWidth(80);
             i.setOnMouseDragged(e->{
                 playerHand.setVisible(false);
+                i.setOnDragDetected(de -> onDragDetectedFromHand(e));
             });
         }
     }
