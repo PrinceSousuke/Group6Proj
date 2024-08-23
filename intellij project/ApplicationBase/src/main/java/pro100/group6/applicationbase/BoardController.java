@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -35,16 +36,16 @@ public class BoardController implements Initializable {
     private HBox playerHand;
 
     @FXML
+    private StackPane OpPane, APPane,play_board;
+    @FXML
     private ImageView activePlayerImg, opponentImg;
 
     @FXML
     private GridPane activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2;
 
     @FXML
-    private Button passButton;
+    private Button passButton, testButton;
 
-    @FXML
-    private TilePane play_board;
 
     private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
     private final HashMap<Image, Card> cardHashMap = new HashMap<>();
@@ -53,37 +54,46 @@ public class BoardController implements Initializable {
         @Override
         public void run() {
             while (true) {
-                if (rootPane != null) {
-//                    rootPane.setLayoutX(0);
-//                    rootPane.setLayoutY(0);
-                    rootPane.setPrefWidth(rootPane.getScene().getWindow().getWidth());
-                    rootPane.setPrefHeight(rootPane.getScene().getWindow().getHeight());
-                    passButton.setPrefWidth(rootPane.getWidth() * ((double) 1/9));
-                    passButton.setPrefHeight(rootPane.getHeight() * ((double) 1/10));
-                    passButton.setTranslateX(-rootPane.getWidth()/8);
-                    activePlayerImg.setFitWidth(rootPane.getWidth()/6);
-                    activePlayerImg.setFitHeight(rootPane.getHeight()/3.5);
+                rootPane.setPrefWidth(rootPane.getScene().getWindow().getWidth());
+                rootPane.setPrefHeight(rootPane.getScene().getWindow().getHeight());
+                passButton.setPrefWidth(rootPane.getPrefWidth() * ((double) 1/9));
+                passButton.setPrefHeight(rootPane.getPrefHeight() * ((double) 1/10));
+                passButton.setTranslateX(-rootPane.getPrefWidth()/8);
+                activePlayerImg.setFitWidth(rootPane.getPrefWidth()/6);
+                activePlayerImg.setFitHeight(rootPane.getPrefHeight()/3.5);
+                opponentImg.setFitWidth(rootPane.getPrefWidth()/6);
+                opponentImg.setFitHeight(rootPane.getPrefHeight()/3.5);
 
-                    play_board.setPrefHeight(rootPane.getHeight());
-                    for (Node c : play_board.getChildren()) {
-                        if (c instanceof Pane) {
-                            for (Node g : ((Pane) c).getChildren()) {
-                                if (g instanceof GridPane) {
-                                    for (Node i : ((GridPane) g).getChildren()) {
-                                        if (i instanceof ImageView) {
-                                            ((ImageView) i).setFitHeight(rootPane.getHeight() / 6);
-                                        }
+                play_board.setPrefHeight(rootPane.getHeight());
+                for (Node c : play_board.getChildren()) {
+                    if (c instanceof Pane) {
+                        for (Node g : ((Pane) c).getChildren()) {
+                            if (g instanceof GridPane) {
+                                for (Node i : ((GridPane) g).getChildren()) {
+                                    if (i instanceof ImageView) {
+                                        ((ImageView) i).setFitHeight(rootPane.getPrefHeight() / 6);
+                                        ((ImageView) i).setFitWidth(rootPane.getPrefWidth() / 10);
                                     }
                                 }
                             }
                         }
                     }
                 }
+                play_board.setPrefHeight(rootPane.getPrefHeight());
+                for (Node c : OpPane.getChildren()) {
+                    if (c instanceof StackPane) {
+                        ((StackPane) c).setPrefHeight(play_board.getPrefHeight()/2);
+                        for (Node g : ((StackPane) c).getChildren()) {
+                            if (g instanceof GridPane) {
+
+                            }
+                        }
+                    }
+                }
+
             }
         }
     });
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -126,7 +136,7 @@ public class BoardController implements Initializable {
                 player1.setFeyre(1);
                 feyreMeter.setProgress((double) player1.getFeyre() /15);
                 healthMeter.setProgress((double) player1.getHealth() /25);
-                play_board.setRotate(180);
+                play_board.setRotate(00);
                 turnDefinitions.put(1,player1);
                 turnDefinitions.put(2,player2);
                 break;
@@ -136,7 +146,7 @@ public class BoardController implements Initializable {
                 player2.setFeyre(1);
                 feyreMeter.setProgress((double) player2.getFeyre() /15);
                 healthMeter.setProgress((double) player2.getHealth() /25);
-                play_board.setRotate(0);
+                play_board.setRotate(180);
                 turnDefinitions.put(1,player2);
                 turnDefinitions.put(2,player1);
                 break;
@@ -207,10 +217,10 @@ public class BoardController implements Initializable {
         if (playerHand.isVisible()) {
             playerHand.setVisible(false);
         }
-        if (play_board.getRotate() == 180){
+
+        play_board.setRotate(play_board.getRotate() + 180);
+        if (play_board.getRotate() == 360){
             play_board.setRotate(0);
-        } else {
-            play_board.setRotate(180);
         }
         List<ImageView> players = Arrays.asList(activePlayerImg, opponentImg);
         for (ImageView p : players) {
@@ -266,6 +276,9 @@ public class BoardController implements Initializable {
         for (Node i : playerHand.getChildren()) {
             ((ImageView) i).setFitHeight(150);
             ((ImageView) i).setFitWidth(80);
+            i.setOnMouseDragged(e->{
+                playerHand.setVisible(false);
+            });
         }
     }
 

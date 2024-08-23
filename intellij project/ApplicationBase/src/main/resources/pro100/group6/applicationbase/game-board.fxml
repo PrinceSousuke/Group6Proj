@@ -10,10 +10,8 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.shape.Line?>
 
 <StackPane id="root" fx:id="rootPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@uiResources/gameboard.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pro100.group6.applicationbase.BoardController">
@@ -26,7 +24,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <ImageView id="opponentImg" fx:id="opponentImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+      <ImageView id="opponentImg" fx:id="opponentImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" top="10.0" />
          </StackPane.margin>
@@ -45,11 +43,11 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </ProgressBar>
-      <TilePane fx:id="play_board" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="690.0" rotate="180.0" styleClass="board" stylesheets="@uiResources/gameboard.css" StackPane.alignment="CENTER">
+      <StackPane fx:id="play_board" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0">
          <children>
-            <Pane id="player1-playspace" fx:id="APPane" prefHeight="269.0" prefWidth="675.0" stylesheets="@uiResources/gameboard.css" TilePane.alignment="BOTTOM_CENTER">
+            <StackPane id="player1-playspace" fx:id="APPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="BOTTOM_CENTER">
                <children>
-                  <GridPane id="player1row2" fx:id="activePlayerRow2" alignment="CENTER" layoutX="33.0" layoutY="7.0" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css">
+                  <GridPane id="player1row2" fx:id="activePlayerRow2" alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="677.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="TOP_CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="507.0" minWidth="10.0" prefWidth="115.00002034505208" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.66661071777344" minWidth="10.0" prefWidth="96.33331298828124" />
@@ -72,7 +70,7 @@
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView id="APRow2_3" fx:id="APRow2_3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APRow2_3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
@@ -92,7 +90,7 @@
                         </ImageView>
                      </children>
                   </GridPane>
-                  <GridPane id="player1row1" fx:id="activePlayerRow1" layoutY="123.0" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css">
+                  <GridPane id="player1row1" fx:id="activePlayerRow1" maxHeight="-Infinity" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="BOTTOM_CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="177.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="106.66664632161459" />
@@ -141,10 +139,10 @@
                      </children>
                   </GridPane>
                </children>
-            </Pane>
-            <Pane id="player2-playspace" fx:id="OpPane" prefHeight="269.0" prefWidth="675.0" stylesheets="@uiResources/gameboard.css" TilePane.alignment="TOP_CENTER">
+            </StackPane>
+            <StackPane fx:id="OpPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" rotate="180.0" StackPane.alignment="TOP_CENTER">
                <children>
-                  <GridPane id="player2row2" fx:id="opponentRow2" alignment="CENTER" layoutX="33.0" layoutY="7.0" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css">
+                  <GridPane id="player2row2" fx:id="opponentRow2" alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="TOP_CENTER">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="507.0" minWidth="10.0" prefWidth="115.00002034505208" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.66661071777344" minWidth="10.0" prefWidth="96.33331298828124" />
@@ -167,7 +165,7 @@
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView id="APRow2_3" fx:id="OpRow2_3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                        <ImageView fx:id="OpRow2_3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
@@ -187,7 +185,7 @@
                         </ImageView>
                      </children>
                   </GridPane>
-                  <GridPane id="player2row1" fx:id="opponentRow1" alignment="TOP_CENTER" layoutY="123.0" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css">
+                  <GridPane id="player2row1" fx:id="opponentRow1" alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="BOTTOM_CENTER">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="177.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="106.66664632161459" />
@@ -236,9 +234,9 @@
                      </children>
                   </GridPane>
                </children>
-            </Pane>
+            </StackPane>
          </children>
-      </TilePane>
+      </StackPane>
       <ImageView id="activePlayerImg" fx:id="activePlayerImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" StackPane.alignment="BOTTOM_LEFT">
          <StackPane.margin>
             <Insets bottom="10.0" left="10.0" />

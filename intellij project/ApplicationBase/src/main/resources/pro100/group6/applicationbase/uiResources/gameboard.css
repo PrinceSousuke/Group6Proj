@@ -1,12 +1,6 @@
 
-#player1-playspace {
-    -fx-translate-y: -35;
-    -fx-rotate: 180;
-}
 
-#player2-playspace{
-    -fx-translate-y: 35;
-}
+
 
 
 #feyreMeter {
