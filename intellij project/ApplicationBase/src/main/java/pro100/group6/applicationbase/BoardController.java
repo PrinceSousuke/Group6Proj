@@ -71,13 +71,23 @@ public class BoardController implements Initializable {
 
                 play_board.setPrefHeight(rootPane.getHeight());
                 for (Node c : play_board.getChildren()) {
-                    if (c instanceof Pane) {
-                        for (Node g : ((Pane) c).getChildren()) {
+                    if (c instanceof StackPane) {
+                        ((StackPane) c).setPrefHeight(rootPane.getHeight()/2);
+                        ((StackPane) c).setPrefWidth(rootPane.getWidth()/1.6);
+                        for (Node g : ((StackPane) c).getChildren()) {
                             if (g instanceof GridPane) {
                                 for (Node i : ((GridPane) g).getChildren()) {
                                     if (i instanceof ImageView) {
                                         ((ImageView) i).setFitHeight(rootPane.getPrefHeight() / 6);
                                         ((ImageView) i).setFitWidth(rootPane.getPrefWidth() / 10);
+                                    }
+
+                                    double paneHeight = ((StackPane)c).getHeight();
+                                    if (i.getId().contains("Row1") || i.getId().contains("Deck")){
+                                        i.setTranslateY(-paneHeight/10);
+                                    }
+                                    if (i.getId().contains("Row2") || i.getId().contains("Grave")){
+                                        i.setTranslateY(paneHeight/8);
                                     }
                                 }
                             }
@@ -85,17 +95,6 @@ public class BoardController implements Initializable {
                     }
                 }
                 play_board.setPrefHeight(rootPane.getPrefHeight());
-                for (Node c : OpPane.getChildren()) {
-                    if (c instanceof StackPane) {
-                        ((StackPane) c).setPrefHeight(play_board.getPrefHeight()/2);
-                        for (Node g : ((StackPane) c).getChildren()) {
-                            if (g instanceof GridPane) {
-
-                            }
-                        }
-                    }
-                }
-
             }
         }
     });
@@ -141,7 +140,7 @@ public class BoardController implements Initializable {
                 player1.setFeyre(1);
                 feyreMeter.setProgress((double) player1.getFeyre() /15);
                 healthMeter.setProgress((double) player1.getHealth() /25);
-                play_board.setRotate(00);
+                play_board.setRotate(0);
                 turnDefinitions.put(1,player1);
                 turnDefinitions.put(2,player2);
                 break;
@@ -191,7 +190,6 @@ public class BoardController implements Initializable {
             cards.add(deck.get(i));
             turnDefinitions.get(1).setHand(cards);
         }
-        System.out.println(turnDefinitions.get(1).getHand());
         for (int i = 0; i < 4; i++) {
             List<Card> cards = new ArrayList<>();
             if (turnDefinitions.get(2).getHand() != null){
@@ -201,8 +199,6 @@ public class BoardController implements Initializable {
             cards.add(deck.get(i));
             turnDefinitions.get(2).setHand(cards);
         }
-        System.out.println(turnDefinitions.get(2).getHand());
-
     }
 
     public Dragboard onDragDetectedFromHand(MouseEvent e){
@@ -346,7 +342,9 @@ public class BoardController implements Initializable {
                     ((ImageView) view).setImage(content.getImage());
                     player.getHand().remove(cardHashMap.get(ci));
                     player.setFeyre(player.getFeyre() - cardHashMap.get(ci).getFeyreReq());
-                    feyreMeter.setProgress((double) player.getFeyre() /25);
+                    feyreMeter.setProgress((double) player.getFeyre() /15);
+                    view.setOnContextMenuRequested(e -> {
+                    });
                 }
             }
         }
