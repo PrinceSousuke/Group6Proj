@@ -41,12 +41,16 @@ public class BoardController implements Initializable {
     @FXML
     private ImageView activePlayerImg, opponentImg;
 
+    private String selectedImage = "";
+
     @FXML
     private GridPane activePlayerRow1, activePlayerRow2, opponentRow1, opponentRow2;
 
     @FXML
     private Button passButton, testButton;
 
+
+    ArrayList<String> noTouch = new ArrayList<>(Arrays.asList("APGrave","APDeck","OpDeck","OpGrave"));
 
     private final HashMap<ImageView, Player> playerHashMap = new HashMap<>();
     private final HashMap<Image, Card> cardHashMap = new HashMap<>();
@@ -67,13 +71,23 @@ public class BoardController implements Initializable {
 
                 play_board.setPrefHeight(rootPane.getHeight());
                 for (Node c : play_board.getChildren()) {
-                    if (c instanceof Pane) {
-                        for (Node g : ((Pane) c).getChildren()) {
+                    if (c instanceof StackPane) {
+                        ((StackPane) c).setPrefHeight(rootPane.getHeight()/2);
+                        ((StackPane) c).setPrefWidth(rootPane.getWidth()/1.6);
+                        for (Node g : ((StackPane) c).getChildren()) {
                             if (g instanceof GridPane) {
                                 for (Node i : ((GridPane) g).getChildren()) {
                                     if (i instanceof ImageView) {
                                         ((ImageView) i).setFitHeight(rootPane.getPrefHeight() / 6);
                                         ((ImageView) i).setFitWidth(rootPane.getPrefWidth() / 10);
+                                    }
+
+                                    double paneHeight = ((StackPane)c).getHeight();
+                                    if (i.getId().contains("Row1") || i.getId().contains("Deck")){
+                                        i.setTranslateY(-paneHeight/10);
+                                    }
+                                    if (i.getId().contains("Row2") || i.getId().contains("Grave")){
+                                        i.setTranslateY(paneHeight/8);
                                     }
                                 }
                             }
@@ -81,17 +95,6 @@ public class BoardController implements Initializable {
                     }
                 }
                 play_board.setPrefHeight(rootPane.getPrefHeight());
-                for (Node c : OpPane.getChildren()) {
-                    if (c instanceof StackPane) {
-                        ((StackPane) c).setPrefHeight(play_board.getPrefHeight()/2);
-                        for (Node g : ((StackPane) c).getChildren()) {
-                            if (g instanceof GridPane) {
-
-                            }
-                        }
-                    }
-                }
-
             }
         }
     });
@@ -137,7 +140,7 @@ public class BoardController implements Initializable {
                 player1.setFeyre(1);
                 feyreMeter.setProgress((double) player1.getFeyre() /15);
                 healthMeter.setProgress((double) player1.getHealth() /25);
-                play_board.setRotate(00);
+                play_board.setRotate(0);
                 turnDefinitions.put(1,player1);
                 turnDefinitions.put(2,player2);
                 break;
@@ -153,26 +156,28 @@ public class BoardController implements Initializable {
                 break;
         }
         for (GridPane r : rows) {
-            ArrayList<String> noTouch = new ArrayList<>(Arrays.asList("APGrave","APDeck","OpDeck","OpGrave"));
             for (Node i : r.getChildren()){
                 if (i instanceof ImageView){
                     ClipboardContent content = new ClipboardContent();
                     i.setOnDragEntered(new EventHandler<DragEvent>() {
-
                         @Override
                         public void handle(DragEvent dragEvent) {
                             Dragboard db = dragEvent.getDragboard();
                             if (!noTouch.contains(i.getId())) {
-                                ((ImageView) i).setImage(db.getImage());
+                                if (((ImageView)i).getImage().equals(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()))) {
+                                    ((ImageView) i).setImage(db.getImage());
+                                    i.setOnDragExited(new EventHandler<DragEvent>() {
+                                        @Override
+                                        public void handle(DragEvent dragEvent) {
+                                            ((ImageView)i).setImage(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()));
+                                        }
+                                    });
+                                }
                             }
+                            selectedImage = i.getId();
                         }
                     });
-                    i.setOnDragExited(new EventHandler<DragEvent>() {
-                        @Override
-                        public void handle(DragEvent dragEvent) {
-                            ((ImageView)i).setImage(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()));
-                        }
-                    });
+
                 }
             }
         }
@@ -185,7 +190,6 @@ public class BoardController implements Initializable {
             cards.add(deck.get(i));
             turnDefinitions.get(1).setHand(cards);
         }
-        System.out.println(turnDefinitions.get(1).getHand());
         for (int i = 0; i < 4; i++) {
             List<Card> cards = new ArrayList<>();
             if (turnDefinitions.get(2).getHand() != null){
@@ -195,8 +199,6 @@ public class BoardController implements Initializable {
             cards.add(deck.get(i));
             turnDefinitions.get(2).setHand(cards);
         }
-        System.out.println(turnDefinitions.get(2).getHand());
-
     }
 
     public Dragboard onDragDetectedFromHand(MouseEvent e){
@@ -309,13 +311,42 @@ public class BoardController implements Initializable {
             ((ImageView) i).setFitWidth(80);
             i.setOnMouseDragged(e->{
                 playerHand.setVisible(false);
-
                 ClipboardContent content = new ClipboardContent();
                 i.setOnDragDetected(de -> {
                     content.putImage(onDragDetectedFromHand(e).getImage());
                 });
-                i.setOnMouseReleased(re -> System.out.println("why"));
+                i.setOnDragDone(done -> {
+
+                    if (!noTouch.contains(selectedImage)) {
+                        if (StackPane.getAlignment(activePlayerImg) == Pos.BOTTOM_LEFT) {
+                            for (Node grid : APPane.getChildren()) {
+                                dropperChecker(ci, content, (GridPane) grid, player1);
+                            }
+                        }
+                        if (StackPane.getAlignment(opponentImg) == Pos.BOTTOM_LEFT) {
+                            for (Node grid : OpPane.getChildren()) {
+                                dropperChecker(ci, content, (GridPane) grid, player2);
+                            }
+                        }
+                    }
+                });
             });
+
+        }
+    }
+
+    private void dropperChecker(Image ci, ClipboardContent content, GridPane grid, Player player) {
+        for (Node view : grid.getChildren()) {
+            if (view.getId().equals(selectedImage)&& ((ImageView)view).getImage().getUrl().contains("cardPlaceholder")) {
+                if (player.getFeyre() >= cardHashMap.get(ci).getFeyreReq()) {
+                    ((ImageView) view).setImage(content.getImage());
+                    player.getHand().remove(cardHashMap.get(ci));
+                    player.setFeyre(player.getFeyre() - cardHashMap.get(ci).getFeyreReq());
+                    feyreMeter.setProgress((double) player.getFeyre() /15);
+                    view.setOnContextMenuRequested(e -> {
+                    });
+                }
+            }
         }
     }
 
