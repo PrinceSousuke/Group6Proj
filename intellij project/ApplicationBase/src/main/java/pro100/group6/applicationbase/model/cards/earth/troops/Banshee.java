@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Banshee extends Troop {
     public Banshee() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Banshee.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(5);
         setDamage(7);
         setHealth(8);
         setCardName("Banshee");
-        setCardDescription("Placeholder description");
+        setCardDescription("Screeches at the enemy");
     }
 }

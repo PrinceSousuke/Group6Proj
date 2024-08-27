@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Satyr extends Troop {
     public Satyr() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Satyr.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(4);
+        setFeyreReq(5);
         setDamage(5);
         setHealth(15);
         setCardName("Satyr");
-        setCardDescription("Placeholder description");
+        setCardDescription("Calls upon forest friends");
     }
 }

@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Golems extends Troop {
     public Golems() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Golem.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(1);
+        setFeyreReq(8);
         setDamage(7);
         setHealth(18);
-        setCardName("Golems");
-        setCardDescription("Placeholder description");
+        setCardName("Golem");
+        setCardDescription("Big rock");
     }
 }

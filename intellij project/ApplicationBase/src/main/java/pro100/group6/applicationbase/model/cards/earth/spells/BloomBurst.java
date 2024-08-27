@@ -5,11 +5,11 @@ import pro100.group6.applicationbase.model.abstractmodel.AttackSpell;
 
 public class BloomBurst extends AttackSpell {
     public BloomBurst() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/BloomBurst.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(3);
         setDamage(8);
         setCardName("Bloom Burst");
-        setCardDescription("Deal 8 damage to a unit");
+        setCardDescription("Deal 8 damage to enemy");
     }
 }

@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class MrRock extends Troop {
     public MrRock() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Mr.Rock.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(1);
+        setFeyreReq(3);
         setDamage(5);
         setHealth(5);
         setCardName("Mr.Rock");
-        setCardDescription("Placeholder description");
+        setCardDescription("He dont play");
     }
 }

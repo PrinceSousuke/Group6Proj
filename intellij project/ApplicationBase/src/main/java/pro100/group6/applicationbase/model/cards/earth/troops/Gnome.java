@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Gnome extends Troop {
     public Gnome() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Gnome.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(2);
+        setFeyreReq(6);
         setDamage(6);
         setHealth(10);
         setCardName("Gnome");
-        setCardDescription("Placeholder description");
+        setCardDescription("Taps staff against ground");
     }
 }

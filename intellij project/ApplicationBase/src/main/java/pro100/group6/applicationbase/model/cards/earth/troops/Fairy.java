@@ -7,12 +7,12 @@ import pro100.group6.applicationbase.model.enums.CardClass;
 public class Fairy extends Troop {
 
     public Fairy() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Faerie.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(1);
+        setFeyreReq(5);
         setDamage(5);
         setHealth(8);
         setCardName("Fairy");
-        setCardDescription("Placeholder description");
+        setCardDescription("Shoots beams of green energy");
     }
 }

@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Nymph extends Troop {
     public Nymph() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Nymph.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(3);
+        setFeyreReq(7);
         setDamage(4);
         setHealth(16);
         setCardName("Nymph");
-        setCardDescription("Placeholder description");
+        setCardDescription("Constricts enemy with vines");
     }
 }

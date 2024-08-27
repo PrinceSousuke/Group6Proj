@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Fauns extends Troop {
     public Fauns() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Faun.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(3);
+        setFeyreReq(7);
         setDamage(6);
         setHealth(14);
         setCardName("Fauns");
-        setCardDescription("Placeholder description");
+        setCardDescription("Uses poisonous plants as there weapon");
     }
 }

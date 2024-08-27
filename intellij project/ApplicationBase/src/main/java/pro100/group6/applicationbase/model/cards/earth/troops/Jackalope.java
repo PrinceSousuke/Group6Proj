@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Jackalope extends Troop {
     public Jackalope() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Jackalope.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(5);
         setDamage(4);
         setHealth(12);
         setCardName("Jackalope");
-        setCardDescription("Placeholder description");
+        setCardDescription("Roundhouse kick");
     }
 }

@@ -5,12 +5,12 @@ import pro100.group6.applicationbase.model.abstractmodel.Troop;
 
 public class Elves extends Troop {
     public Elves() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Elf.png");
         setCardClass(CardClass.Earth);
-        setFeyreReq(1);
+        setFeyreReq(3);
         setDamage(3);
         setHealth(12);
-        setCardName("Elves");
-        setCardDescription("Placeholder description");
+        setCardName("Elf");
+        setCardDescription("Shoots energy-infused arrows");
     }
 }
