@@ -1,4 +1,7 @@
-
+.card {
+    -fx-pref-width: 70;
+    -fx-pref-height: 100;
+}
 
 
 

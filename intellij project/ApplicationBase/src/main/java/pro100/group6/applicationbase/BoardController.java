@@ -32,6 +32,8 @@ public class BoardController implements Initializable {
     @FXML
     private StackPane rootPane;
     @FXML
+    private Pane blockerPane;
+    @FXML
     private ProgressBar feyreMeter, healthMeter;
     @FXML
     private HBox playerHand;
@@ -71,13 +73,23 @@ public class BoardController implements Initializable {
 
                 play_board.setPrefHeight(rootPane.getHeight());
                 for (Node c : play_board.getChildren()) {
-                    if (c instanceof Pane) {
-                        for (Node g : ((Pane) c).getChildren()) {
+                    if (c instanceof StackPane) {
+                        ((StackPane) c).setPrefHeight(rootPane.getHeight()/2);
+                        ((StackPane) c).setPrefWidth(rootPane.getWidth()/1.6);
+                        for (Node g : ((StackPane) c).getChildren()) {
                             if (g instanceof GridPane) {
                                 for (Node i : ((GridPane) g).getChildren()) {
                                     if (i instanceof ImageView) {
                                         ((ImageView) i).setFitHeight(rootPane.getPrefHeight() / 6);
-                                        ((ImageView) i).setFitWidth(rootPane.getPrefWidth() / 10);
+                                        ((ImageView) i).setFitWidth(rootPane.getPrefWidth() / 15);
+                                    }
+
+                                    double paneHeight = ((StackPane)c).getHeight();
+                                    if (i.getId().contains("Row1") || i.getId().contains("Deck")){
+                                        i.setTranslateY(-paneHeight/10);
+                                    }
+                                    if (i.getId().contains("Row2") || i.getId().contains("Grave")){
+                                        i.setTranslateY(paneHeight/8);
                                     }
                                 }
                             }
@@ -85,17 +97,6 @@ public class BoardController implements Initializable {
                     }
                 }
                 play_board.setPrefHeight(rootPane.getPrefHeight());
-                for (Node c : OpPane.getChildren()) {
-                    if (c instanceof StackPane) {
-                        ((StackPane) c).setPrefHeight(play_board.getPrefHeight()/2);
-                        for (Node g : ((StackPane) c).getChildren()) {
-                            if (g instanceof GridPane) {
-
-                            }
-                        }
-                    }
-                }
-
             }
         }
     });
@@ -141,7 +142,7 @@ public class BoardController implements Initializable {
                 player1.setFeyre(1);
                 feyreMeter.setProgress((double) player1.getFeyre() /15);
                 healthMeter.setProgress((double) player1.getHealth() /25);
-                play_board.setRotate(00);
+                play_board.setRotate(0);
                 turnDefinitions.put(1,player1);
                 turnDefinitions.put(2,player2);
                 break;
@@ -191,7 +192,6 @@ public class BoardController implements Initializable {
             cards.add(deck.get(i));
             turnDefinitions.get(1).setHand(cards);
         }
-        System.out.println(turnDefinitions.get(1).getHand());
         for (int i = 0; i < 4; i++) {
             List<Card> cards = new ArrayList<>();
             if (turnDefinitions.get(2).getHand() != null){
@@ -201,8 +201,6 @@ public class BoardController implements Initializable {
             cards.add(deck.get(i));
             turnDefinitions.get(2).setHand(cards);
         }
-        System.out.println(turnDefinitions.get(2).getHand());
-
     }
 
     public Dragboard onDragDetectedFromHand(MouseEvent e){
@@ -218,6 +216,11 @@ public class BoardController implements Initializable {
         }
         return null;
     }
+
+    public void onDropDetectedFromHand(DragEvent e){
+
+    }
+
 
     private Card[] shufflePlayerDeck(Player player){
         ArrayList<Card> deck = new ArrayList<>(Arrays.asList(player.getDeck()));
@@ -249,6 +252,9 @@ public class BoardController implements Initializable {
         if (playerHand.isVisible()) {
             playerHand.setVisible(false);
         }
+        if (blockerPane.isVisible()){
+            blockerPane.setVisible(false);
+        }
 
         play_board.setRotate(play_board.getRotate() + 180);
         if (play_board.getRotate() == 360){
@@ -259,6 +265,14 @@ public class BoardController implements Initializable {
             if (StackPane.getAlignment(p) == Pos.TOP_RIGHT){
                 Player player = playerHashMap.get(p);
                 player.setFeyre(player.getFeyre() + 1);
+                List<Card> hand = player.getHand();
+                Card[] deckArray = player.getDeck();
+                List<Card> deck = new ArrayList<>(Arrays.asList(deckArray));
+                hand.add(deck.getFirst());
+                deck.remove(deck.getFirst());
+                player.setHand(hand);
+                player.setDeck(deck.toArray(new Card[deck.size()]));
+
                 feyreMeter.setProgress((double) player.getFeyre() /15);
                 healthMeter.setProgress((double) player.getHealth() /25);
             }
@@ -301,13 +315,14 @@ public class BoardController implements Initializable {
     private void insertCardFromHand(Card c){
         playerHand.setVisible(true);
         ImageView iv = new ImageView();
+        iv.setPreserveRatio(false);
         Image ci = new Image(new File(resourcesRoot + c.getCardImage()).toURI().toString());
         iv.setImage(ci);
         cardHashMap.put(ci, c);
         playerHand.getChildren().add(iv);
         for (Node i : playerHand.getChildren()) {
-            ((ImageView) i).setFitHeight(150);
-            ((ImageView) i).setFitWidth(80);
+            ((ImageView) i).setFitHeight(rootPane.getPrefHeight() / 4);
+            ((ImageView) i).setFitWidth(rootPane.getPrefWidth() / 12);
             i.setOnMouseDragged(e->{
                 playerHand.setVisible(false);
                 ClipboardContent content = new ClipboardContent();
@@ -341,9 +356,48 @@ public class BoardController implements Initializable {
                     ((ImageView) view).setImage(content.getImage());
                     player.getHand().remove(cardHashMap.get(ci));
                     player.setFeyre(player.getFeyre() - cardHashMap.get(ci).getFeyreReq());
-                    feyreMeter.setProgress((double) player.getFeyre() /25);
+                    feyreMeter.setProgress((double) player.getFeyre() /15);
+                    view.setOnContextMenuRequested(e -> {
+                    });
+                } else {
+                    if (player.getHealth() > 5){
+                        ((ImageView) view).setImage(content.getImage());
+                        player.getHand().remove(cardHashMap.get(ci));
+                        int healthToTake = cardHashMap.get(ci).getFeyreReq() - player.getFeyre();
+                        player.setFeyre(0);
+                        player.setHealth(player.getHealth() - healthToTake);
+                        player.setMax_health(5);
+                        healthMeter.setProgress((double) player.getHealth() /25);
+                        feyreMeter.setProgress((double) player.getFeyre() /15);
+                    }
                 }
+                view.setOnMouseClicked(e->{
+                    Card attacker = cardHashMap.get(((ImageView)e.getTarget()).getImage());
+                    blockerPane.setVisible(true);
+                    blockerPane.setPrefWidth(rootPane.getPrefWidth());
+                    blockerPane.setPrefHeight(rootPane.getPrefHeight()/2);
+                    if (StackPane.getAlignment(activePlayerImg) == Pos.BOTTOM_LEFT) {
+                        for (Node c : OpPane.getChildren()) {
+                            if (c instanceof GridPane){
+                                for (Node i : ((GridPane) c).getChildren()) {
+                                    if (i instanceof ImageView){
+                                        if (!noTouch.contains(i.getId())) {
+                                            i.setOnMouseClicked(attack -> {
+                                                if (attacker instanceof  Troop){
+                                                    ((Troop) attacker).attackUnit((Troop) cardHashMap.get(((ImageView)attack.getTarget()).getImage()));
+                                                }
+                                                blockerPane.setVisible(false);
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
             }
         }
     }
+
+
 }

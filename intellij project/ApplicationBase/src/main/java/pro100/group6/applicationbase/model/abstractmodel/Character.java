@@ -14,7 +14,17 @@ public abstract class Character implements Serializable {
     protected int health;
     protected List<Card> hand;
     protected Card[] deck;
-    private int MAX_FEYRE = 15;
+    private int max_health = 25;
+
+    public int getMax_health() {
+        return max_health;
+    }
+
+    public void setMax_health(int max_health) {
+        this.max_health = max_health;
+    }
+
+    private static final int MAX_FEYRE = 15;
 
     public Character(String name,int health) {
         setName(name);
@@ -94,10 +104,11 @@ public abstract class Character implements Serializable {
     public void setHealth(int health) {
         if (health < 0 ) {
             this.health = 0;
-        } else if (health > 25) {
-            this.health = 25;
+        } else if (health > max_health) {
+            this.health = max_health;
         } else {
             this.health = health;
         }
     }
+
 }

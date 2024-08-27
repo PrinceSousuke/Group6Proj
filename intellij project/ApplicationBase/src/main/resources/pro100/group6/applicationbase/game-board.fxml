@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
@@ -24,14 +25,6 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <ImageView id="opponentImg" fx:id="opponentImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" StackPane.alignment="TOP_RIGHT">
-         <StackPane.margin>
-            <Insets right="10.0" top="10.0" />
-         </StackPane.margin>
-         <image>
-            <Image url="@uiResources/playerPlaceholderA.png" />
-         </image>
-      </ImageView>
       <Line endX="100.0" startX="-334.98870849609375" startY="-0.6575281023979187" />
       <ProgressBar id="feyreMeter" fx:id="feyreMeter" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="330.0" progress="0.0" rotate="-90.0" snapToPixel="false" stylesheets="@uiResources/gameboard.css" StackPane.alignment="CENTER_LEFT">
          <cursor>
@@ -45,102 +38,7 @@
       </ProgressBar>
       <StackPane fx:id="play_board" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0">
          <children>
-            <StackPane fx:id="OpPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" rotate="180.0" style="-fx-background-color: blue;" StackPane.alignment="TOP_CENTER">
-               <children>
-                  <GridPane id="player2row2" fx:id="opponentRow2" alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="TOP_CENTER">
-                     <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="507.0" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="315.66661071777344" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="315.66661071777344" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="326.0000712076823" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="326.0000712076823" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="326.0000712076823" minWidth="10.0" prefWidth="80.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <ImageView fx:id="OpRow2_1" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="OpRow2_2" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="OpRow2_3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="OpRow2_0" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="OpGrave" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" GridPane.columnIndex="5">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets bottom="15.0" left="15.0" top="15.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                     </children>
-                  </GridPane>
-                  <GridPane id="player2row1" fx:id="opponentRow1" alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="BOTTOM_CENTER">
-                     <columnConstraints>
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="221.0" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="135.0" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="162.0" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="172.6666870117188" minWidth="10.0" prefWidth="80.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="188.66671752929688" minWidth="10.0" prefWidth="80.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <ImageView fx:id="OpRow1_0" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets right="5.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="OpRow1_1" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="OpRow1_2" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="OpRow1_3" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="OpDeck" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
-                           <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets left="40.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                     </children>
-                  </GridPane>
-               </children>
-            </StackPane>
-            <StackPane id="player1-playspace" fx:id="APPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" style="-fx-background-color: red;" stylesheets="@uiResources/gameboard.css" StackPane.alignment="BOTTOM_CENTER">
+            <StackPane id="player1-playspace" fx:id="APPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="BOTTOM_CENTER">
                <children>
                   <GridPane id="player1row2" fx:id="activePlayerRow2" alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="677.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="TOP_CENTER">
                     <columnConstraints>
@@ -155,27 +53,27 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="APRow2_1" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <ImageView fx:id="APRow2_1" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="APRow2_2" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APRow2_2" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="APRow2_3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APRow2_3" fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="APRow2_0" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APRow2_0" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="APGrave" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" GridPane.columnIndex="5">
+                        <ImageView fx:id="APGrave" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" styleClass="card" GridPane.columnIndex="5">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
@@ -197,7 +95,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="APRow1_0" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <ImageView fx:id="APRow1_0" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="card" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
@@ -205,7 +103,7 @@
                               <Insets right="5.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <ImageView fx:id="APRow1_1" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APRow1_1" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="card" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
@@ -213,17 +111,112 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <ImageView fx:id="APRow1_2" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APRow1_2" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="card" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="APRow1_3" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APRow1_3" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="APDeck" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER">
+                        <ImageView fx:id="APDeck" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" styleClass="card" GridPane.columnIndex="4" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="40.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </children>
+            </StackPane>
+            <StackPane fx:id="OpPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" rotate="180.0" StackPane.alignment="TOP_CENTER">
+               <children>
+                  <GridPane id="player2row2" fx:id="opponentRow2" alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="TOP_CENTER">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="507.0" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="315.66661071777344" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="315.66661071777344" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="326.0000712076823" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="326.0000712076823" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="326.0000712076823" minWidth="10.0" prefWidth="80.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fx:id="OpRow2_1" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="OpRow2_2" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="OpRow2_3" fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="OpRow2_0" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="OpGrave" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" styleClass="card" GridPane.columnIndex="5">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="15.0" top="15.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+                  <GridPane id="player2row1" fx:id="opponentRow1" alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="690.0" stylesheets="@uiResources/gameboard.css" StackPane.alignment="BOTTOM_CENTER">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="221.0" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="135.0" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="162.0" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="172.6666870117188" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="188.66671752929688" minWidth="10.0" prefWidth="80.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fx:id="OpRow1_0" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="OpRow1_1" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="OpRow1_2" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" styleClass="card" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="OpRow1_3" fitHeight="101.0" fitWidth="70.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                           <image>
+                              <Image url="@uiResources/cardPlaceholder.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="OpDeck" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" styleClass="card" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
                            <image>
                               <Image url="@uiResources/cardPlaceholder.png" />
                            </image>
@@ -237,16 +230,22 @@
             </StackPane>
          </children>
       </StackPane>
-      <ImageView id="activePlayerImg" fx:id="activePlayerImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" StackPane.alignment="BOTTOM_LEFT">
+      <ImageView id="opponentImg" fx:id="opponentImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" StackPane.alignment="TOP_RIGHT">
          <StackPane.margin>
-            <Insets bottom="10.0" left="10.0" />
+            <Insets right="10.0" top="10.0" />
          </StackPane.margin>
          <image>
-            <Image url="@uiResources/playerPlaceholderB.png" />
+            <Image url="@uiResources/playerPlaceholderA.png" />
          </image>
       </ImageView>
       <Button id="passButton" fx:id="passButton" mnemonicParsing="false" onAction="#passTurn" stylesheets="@uiResources/gameboard.css" text="Pass" />
       <Button id="handButton" fx:id="handButton" mnemonicParsing="false" onAction="#showHand" prefHeight="92.0" prefWidth="91.0" stylesheets="@uiResources/gameboard.css" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
       <HBox fx:id="playerHand" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="710.0" visible="false" StackPane.alignment="BOTTOM_CENTER" />
+      <Pane fx:id="blockerPane" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.8" prefHeight="300.0" prefWidth="1000.0" style="-fx-background-color: gray;" visible="false" StackPane.alignment="BOTTOM_CENTER" />
+      <ImageView id="activePlayerImg" fx:id="activePlayerImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" StackPane.alignment="BOTTOM_LEFT">
+         <image>
+            <Image url="@uiResources/playerPlaceholderB.png" />
+         </image>
+      </ImageView>
    </children>
 </StackPane>
