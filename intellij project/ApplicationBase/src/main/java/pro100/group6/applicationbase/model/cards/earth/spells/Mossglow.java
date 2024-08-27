@@ -5,7 +5,7 @@ import pro100.group6.applicationbase.model.abstractmodel.HealSpell;
 
 public class Mossglow extends HealSpell {
     public Mossglow() {
-        setCardImage("uiResources/cardGuy.png");
+        setCardImage("uiResources/cardResourced/Mossglow.png");
         setCardClass(CardClass.Earth);
         setFeyreReq(1);
         setHealAmount(5);
