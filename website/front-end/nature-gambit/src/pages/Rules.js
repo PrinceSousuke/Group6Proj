@@ -18,12 +18,14 @@ there are consequences to pay! Your max health will decrease by the amount of Fe
             </p>
             <p className="App-rulesHeaders">Turns</p>
             <p>
-                Placeholder!
+                Player one will go first and upon each turn they draw 3 cards from their deck. (How many cards can be played placeholder). Once a player has no cards in their deck
+                they will take damage upon every turn starting at -1HP and doubling after their turn has ended. This will be the downfall of using cards to swiftly
+                and making unwise decisions.
             </p>
             <p className="App-rulesHeaders">Decks</p>
             <p>
-                Player decks must have 20 cards out of 88 cards to choose from.
-                Placeholder!
+                Player decks must have 20 cards out of 88 cards to choose from. Each deck can only consist of one type (Earth, Water, Fire, and Air) and can have up to 9
+                neutral cards. Make sure to choose your cards wisely as they will determine your fate of the game.
             </p>
             <p className="App-rulesHeaders">Gameplay</p>
             <p>
