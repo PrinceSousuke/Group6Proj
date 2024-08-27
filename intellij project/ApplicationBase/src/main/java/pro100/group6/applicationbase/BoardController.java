@@ -217,10 +217,6 @@ public class BoardController implements Initializable {
         return null;
     }
 
-    public void onDropDetectedFromHand(DragEvent e){
-
-    }
-
 
     private Card[] shufflePlayerDeck(Player player){
         ArrayList<Card> deck = new ArrayList<>(Arrays.asList(player.getDeck()));
@@ -265,6 +261,12 @@ public class BoardController implements Initializable {
             if (StackPane.getAlignment(p) == Pos.TOP_RIGHT){
                 Player player = playerHashMap.get(p);
                 player.setFeyre(player.getFeyre() + 1);
+
+                feyreMeter.setProgress((double) player.getFeyre() /15);
+                healthMeter.setProgress((double) player.getHealth() /25);
+            }
+            if (StackPane.getAlignment(p) == Pos.BOTTOM_LEFT){
+                Player player = playerHashMap.get(p);
                 List<Card> hand = player.getHand();
                 Card[] deckArray = player.getDeck();
                 List<Card> deck = new ArrayList<>(Arrays.asList(deckArray));
@@ -272,9 +274,6 @@ public class BoardController implements Initializable {
                 deck.remove(deck.getFirst());
                 player.setHand(hand);
                 player.setDeck(deck.toArray(new Card[deck.size()]));
-
-                feyreMeter.setProgress((double) player.getFeyre() /15);
-                healthMeter.setProgress((double) player.getHealth() /25);
             }
             swaparoo(p);
         }
@@ -376,27 +375,42 @@ public class BoardController implements Initializable {
                     blockerPane.setVisible(true);
                     blockerPane.setPrefWidth(rootPane.getPrefWidth());
                     blockerPane.setPrefHeight(rootPane.getPrefHeight()/2);
-                    if (StackPane.getAlignment(activePlayerImg) == Pos.BOTTOM_LEFT) {
-                        for (Node c : OpPane.getChildren()) {
-                            if (c instanceof GridPane){
-                                for (Node i : ((GridPane) c).getChildren()) {
-                                    if (i instanceof ImageView){
-                                        if (!noTouch.contains(i.getId())) {
-                                            i.setOnMouseClicked(attack -> {
-                                                if (attacker instanceof  Troop){
-                                                    ((Troop) attacker).attackUnit((Troop) cardHashMap.get(((ImageView)attack.getTarget()).getImage()));
-                                                }
-                                                blockerPane.setVisible(false);
-                                            });
-                                        }
+                    attackHandler(attacker);
+                    attackHandler(attacker);
+                });
+            }
+        }
+    }
+
+    private void attackHandler(Card attacker) {
+        for (Node s : play_board.getChildren()) {
+            if (s instanceof StackPane){
+                if (getActivePane((StackPane) s)) {
+                    for (Node c : ((StackPane)s).getChildren()){
+                        if (c instanceof GridPane) {
+                            for (Node i : ((GridPane) c).getChildren()) {
+                                if (i instanceof ImageView) {
+                                    if (!noTouch.contains(i.getId())) {
+                                        i.setOnMouseClicked(attack -> {
+                                            if (attacker instanceof Troop) {
+                                                ((Troop) attacker).attackUnit((Troop) cardHashMap.get(((ImageView) attack.getTarget()).getImage()));
+                                            }
+                                            blockerPane.setVisible(false);
+                                        });
                                     }
                                 }
                             }
                         }
                     }
-                });
+                }
             }
         }
+    }
+    private boolean getActivePane(StackPane pane){
+        if (StackPane.getAlignment(pane) == Pos.BOTTOM_CENTER) {
+            return true;
+        }
+        return false;
     }
 
 

@@ -239,7 +239,6 @@
          </image>
       </ImageView>
       <Button id="passButton" fx:id="passButton" mnemonicParsing="false" onAction="#passTurn" stylesheets="@uiResources/gameboard.css" text="Pass" />
-      <Button id="handButton" fx:id="handButton" mnemonicParsing="false" onAction="#showHand" prefHeight="92.0" prefWidth="91.0" stylesheets="@uiResources/gameboard.css" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
       <HBox fx:id="playerHand" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="710.0" visible="false" StackPane.alignment="BOTTOM_CENTER" />
       <Pane fx:id="blockerPane" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.8" prefHeight="300.0" prefWidth="1000.0" style="-fx-background-color: gray;" visible="false" StackPane.alignment="BOTTOM_CENTER" />
       <ImageView id="activePlayerImg" fx:id="activePlayerImg" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" StackPane.alignment="BOTTOM_LEFT">
@@ -247,5 +246,6 @@
             <Image url="@uiResources/playerPlaceholderB.png" />
          </image>
       </ImageView>
+      <Button id="handButton" fx:id="handButton" mnemonicParsing="false" onAction="#showHand" prefHeight="92.0" prefWidth="91.0" stylesheets="@uiResources/gameboard.css" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
    </children>
 </StackPane>

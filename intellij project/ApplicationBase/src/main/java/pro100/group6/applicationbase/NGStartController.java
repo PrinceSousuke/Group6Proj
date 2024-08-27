@@ -56,23 +56,6 @@ public class NGStartController{
 
     @FXML
     private void onPlayGameButtonClick() {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("player1.ser"))){
-            Player p = new Player("player1");
-            List<Card> cards = new ArrayList<>(Arrays.asList(new Jackalope(), new Nymph(), new BlossemBell(), new BloomBurst(), new FaerieRing(), new Elves(), new Satyr(), new MrRock()));
-            p.setDeck(cards.toArray(new Card[cards.size()]));
-            out.writeObject(p);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("player2.ser"))){
-            Player p = new Player("player2");
-            List<Card> cards = new ArrayList<>(Arrays.asList(new AirsEmbrace(), new Breeze(), new WindsDeception(), new Aetherwing(), new Harpy(), new Mistara(), new AerialVision(), new SkyblessPendant()));
-            p.setDeck(cards.toArray(new Card[cards.size()]));
-            out.writeObject(p);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         rootPane.getChildren().clear();
         try {
             StackPane newPane = FXMLLoader.load(getClass().getResource("game-launcher.fxml"));
