@@ -51,8 +51,15 @@
   word-wrap: break-word;
 }
 
-.App-rulesHeaders {
+.App-headers {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 26px;
   padding-bottom: 0;
 }
+
+.About-us-paragraphs {
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 17px;
+}
+
