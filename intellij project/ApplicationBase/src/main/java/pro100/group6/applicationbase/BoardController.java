@@ -376,41 +376,58 @@ public class BoardController implements Initializable {
                     blockerPane.setPrefWidth(rootPane.getPrefWidth());
                     blockerPane.setPrefHeight(rootPane.getPrefHeight()/2);
                     attackHandler(attacker);
-                    attackHandler(attacker);
                 });
             }
         }
     }
 
     private void attackHandler(Card attacker) {
-        for (Node s : play_board.getChildren()) {
-            if (s instanceof StackPane){
-                if (getActivePane((StackPane) s)) {
-                    for (Node c : ((StackPane)s).getChildren()){
-                        if (c instanceof GridPane) {
-                            for (Node i : ((GridPane) c).getChildren()) {
-                                if (i instanceof ImageView) {
-                                    if (!noTouch.contains(i.getId())) {
-                                        i.setOnMouseClicked(attack -> {
-                                            if (attacker instanceof Troop) {
-                                                ((Troop) attacker).attackUnit((Troop) cardHashMap.get(((ImageView) attack.getTarget()).getImage()));
-                                            }
-                                            blockerPane.setVisible(false);
-                                        });
-                                    }
-                                }
-                            }
-                        }
+        ArrayList<ImageView> targets = new ArrayList<>();
+        if (StackPane.getAlignment(activePlayerImg) == Pos.BOTTOM_LEFT) {
+            opponentImg.setOnMouseClicked(e -> {
+                blockerPane.setVisible(false);
+                ((Troop)attacker).attackUnit(playerHashMap.get(opponentImg));
+                opponentImg.setOnMouseClicked(null);
+                passTurn();
+            });
+            for (Node gp : OpPane.getChildren()) {
+                if (gp instanceof GridPane) {
+                    for (Node img : ((GridPane) gp).getChildren()) {
+                        targets.add((ImageView) img);
+                    }
+                }
+            }
+        } else {
+            activePlayerImg.setOnMouseClicked(e -> {
+                blockerPane.setVisible(false);
+                ((Troop)attacker).attackUnit(playerHashMap.get(activePlayerImg));
+                activePlayerImg.setOnMouseClicked(null);
+                passTurn();
+            });
+            for (Node gp : APPane.getChildren()) {
+                if (gp instanceof GridPane) {
+                    for (Node img : ((GridPane) gp).getChildren()) {
+                        targets.add((ImageView) img);
                     }
                 }
             }
         }
-    }
-    private boolean getActivePane(StackPane pane){
-        if (StackPane.getAlignment(pane) == Pos.BOTTOM_CENTER) {
-            return true;
+        for (ImageView t : targets) {
+            t.setOnMouseClicked(e -> {
+                blockerPane.setVisible(false);
+                Image target = ((ImageView)e.getTarget()).getImage();
+                ((Troop)attacker).attackUnit((Troop) cardHashMap.get(target));
+                if (((Troop) cardHashMap.get(target)).isDead()){
+                    cardHashMap.remove(target);
+                }
+                t.setOnMouseClicked(null);
+            });
         }
-        return false;
+        if (playerHashMap.get(activePlayerImg).getHealth() <= 0){
+
+        } else if (playerHashMap.get(opponentImg).getHealth() <= 0){
+
+        }
     }
 
 
