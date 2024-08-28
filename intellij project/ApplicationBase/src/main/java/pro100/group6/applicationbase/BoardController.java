@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.Dragboard;
@@ -419,14 +420,11 @@ public class BoardController implements Initializable {
                 ((Troop)attacker).attackUnit((Troop) cardHashMap.get(target));
                 if (((Troop) cardHashMap.get(target)).isDead()){
                     cardHashMap.remove(target);
+                    t.setImage(new Image(new File(resourcesRoot + "uiResources/cardPlaceholder.png").toURI().toString()));
                 }
+                passTurn();
                 t.setOnMouseClicked(null);
             });
-        }
-        if (playerHashMap.get(activePlayerImg).getHealth() <= 0){
-
-        } else if (playerHashMap.get(opponentImg).getHealth() <= 0){
-
         }
     }
 

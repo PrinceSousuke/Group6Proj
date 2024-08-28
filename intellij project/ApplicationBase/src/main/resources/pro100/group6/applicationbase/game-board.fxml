@@ -17,9 +17,9 @@
 
 <StackPane id="root" fx:id="rootPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@uiResources/gameboard.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pro100.group6.applicationbase.BoardController">
    <children>
-      <ImageView id="boardbg" fitHeight="601.0" fitWidth="998.0" pickOnBounds="true" preserveRatio="true" visible="false" StackPane.alignment="CENTER">
+      <ImageView id="boardbg" fitHeight="601.0" fitWidth="998.0" pickOnBounds="true" StackPane.alignment="CENTER">
          <image>
-            <Image url="@uiResources/gameBoard.png" />
+            <Image url="@uiResources/BoardBackgroundGrass.PNG" />
          </image>
          <viewport>
             <Rectangle2D />
@@ -75,7 +75,7 @@
                         </ImageView>
                         <ImageView fx:id="APGrave" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" styleClass="card" GridPane.columnIndex="5">
                            <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
+                              <Image url="@uiResources/cardResourced/EarthDeckBack.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="15.0" left="15.0" top="15.0" />
@@ -123,7 +123,7 @@
                         </ImageView>
                         <ImageView fx:id="APDeck" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" styleClass="card" GridPane.columnIndex="4" GridPane.halignment="CENTER">
                            <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
+                              <Image url="@uiResources/cardResourced/EarthDeckBack.png" />
                            </image>
                            <GridPane.margin>
                               <Insets left="40.0" />
@@ -170,7 +170,7 @@
                         </ImageView>
                         <ImageView fx:id="OpGrave" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0" styleClass="card" GridPane.columnIndex="5">
                            <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
+                              <Image url="@uiResources/cardResourced/EarthDeckBack.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="15.0" left="15.0" top="15.0" />
@@ -218,7 +218,7 @@
                         </ImageView>
                         <ImageView fx:id="OpDeck" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" styleClass="card" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
                            <image>
-                              <Image url="@uiResources/cardPlaceholder.png" />
+                              <Image url="@uiResources/cardResourced/EarthDeckBack.png" />
                            </image>
                            <GridPane.margin>
                               <Insets left="40.0" />
